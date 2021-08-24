@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kos_interface/bloc.dart';
 import 'package:kos_interface/breakpoints.dart';
 import 'package:kos_interface/const.dart';
 import 'package:kos_interface/content/content1.dart';
@@ -10,15 +9,16 @@ void main() {
   runApp(MyApp());
 }
 
-//TODO кнопки пред и след окна
+//TODO выделить пункт выбранного меню
 //TODO вставка фото с подписью и без
 //TODO вставка видео
 //TODO вставка крутилки
+//TODO SplashScreen
 
 String kosName = 'Название компьютерной обучающей системы';
 String kosYear = '2021';
 
-//индекс текущего элемента списка со страницами кос, 0 - первая страница
+//изменяемый индекс текущего элемента списка со страницами кос, 0 - первая страница
 int currentIndexContent = 0;
 
 //список страниц кос
@@ -30,6 +30,7 @@ List<Widget> contentList = [
 //текущая страница кос
 Widget currentPage = contentList[currentIndexContent];
 
+//ключ который будет присвоен Scaffold чтобы потом получить доступ к Scaffold в bottomNavigationBar чтобы оттуда открыть Drawer
 GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
 class MyApp extends StatelessWidget {
@@ -62,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     //если нажата средняя кнопка
     if (index == 1) {
-      //currentPage = contentList[currentIndexContent];
+      //открыть меню
       _drawerKey.currentState?.openEndDrawer();
     }
     //если нажата кнопка далее
@@ -172,25 +173,99 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
 
-      //* BOTTOM NAVIGATION
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: onTappedBar,
-        type: BottomNavigationBarType.fixed,
-        //showSelectedLabels: false,
-        //showUnselectedLabels: false,
-        selectedItemColor: kMainBlueColor,
-        unselectedItemColor: kMainBlueColor,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.navigate_before), label: 'Назад'),
-          //текущая страница / всего страниц
-          BottomNavigationBarItem(
-              icon: Icon(Icons.format_list_numbered_rounded),
-              label: '${currentIndexContent + 1} / ${contentList.length}'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.navigate_next), label: 'Далее'),
-        ],
+      //* FLOATING ACTION BUTTONS
+      floatingActionButton: Padding(
+        padding: screenWidth <= kDestopBreakpoint
+            ? const EdgeInsets.all(0.0)
+            : const EdgeInsets.all(64.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              backgroundColor: kMainBlueColor,
+              tooltip: 'Назад',
+              onPressed: () {
+                currentIndexContent--;
+                //не может быть меньше 0, т.к. 0 это первая страница
+                if (currentIndexContent < 0) currentIndexContent++;
+                currentPage = contentList[currentIndexContent];
+                setState(() {});
+              },
+              child: Icon(Icons.navigate_before),
+            ),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  _drawerKey.currentState?.openEndDrawer();
+                },
+                child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    child: Text(
+                      '${currentIndexContent + 1} / ${contentList.length}',
+                      style: TextStyle(fontSize: 16),
+                    )),
+              ),
+            ),
+            FloatingActionButton(
+              backgroundColor: kMainBlueColor,
+              tooltip: 'Далее',
+              onPressed: () {
+                currentIndexContent++;
+                //не может быть больше чем индекс последнего элемента списка т.к. это последняя страница кос
+                if (currentIndexContent > contentList.length - 1)
+                  currentIndexContent--;
+                currentPage = contentList[currentIndexContent];
+                setState(() {});
+              },
+              child: Icon(Icons.navigate_next),
+            ),
+          ],
+        ),
       ),
+
+      //* BOTTOM NAVIGATION
+      // bottomNavigationBar: SizedBox(
+      //   height:
+      //       screenWidth <= kDestopBreakpoint ? kBottomNavigationBarHeight : 80,
+      //   child: BottomNavigationBar(
+      //     onTap: onTappedBar,
+      //     type: BottomNavigationBarType.fixed,
+      //     //showSelectedLabels: false,
+      //     //showUnselectedLabels: false,
+      //     selectedItemColor: kMainBlueColor,
+      //     unselectedItemColor: kMainBlueColor,
+      //     items: [
+      //       BottomNavigationBarItem(
+      //           icon: Icon(
+      //             Icons.navigate_before,
+      //             size: screenWidth <= kDestopBreakpoint
+      //                 ? IconTheme.of(context).size
+      //                 : 34,
+      //           ),
+      //           label: 'Назад'),
+      //       //текущая страница / всего страниц
+      //       BottomNavigationBarItem(
+      //           tooltip: 'Открыть меню',
+      //           icon: Icon(
+      //             Icons.format_list_numbered_rounded,
+      //             size: screenWidth <= kDestopBreakpoint
+      //                 ? IconTheme.of(context).size
+      //                 : 34,
+      //           ),
+      //           label: '${currentIndexContent + 1} / ${contentList.length}'),
+      //       BottomNavigationBarItem(
+      //           icon: Icon(
+      //             Icons.navigate_next,
+      //             size: screenWidth <= kDestopBreakpoint
+      //                 ? IconTheme.of(context).size
+      //                 : 34,
+      //           ),
+      //           label: 'Далее'),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
