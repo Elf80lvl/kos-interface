@@ -4,6 +4,7 @@ import 'package:kos_interface/const.dart';
 import 'package:kos_interface/content/content1.dart';
 import 'package:kos_interface/content/content2.dart';
 import 'package:kos_interface/responsive_layout.dart';
+import 'package:kos_interface/splashscreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,10 +14,15 @@ void main() {
 //TODO вставка фото с подписью и без
 //TODO вставка видео
 //TODO вставка крутилки
-//TODO SplashScreen
+//TODO вставка таблицы
 
-String kosName = 'Название компьютерной обучающей системы';
-String kosYear = '2021';
+final String kosName = 'Название компьютерной обучающей системы';
+final String kosType = 'Компьютерная обучающая система';
+final String kosYear = '2021';
+final String writers = 'А.А. Иванов, В.В. Петров';
+final String developers = 'П.П. Сидоров, Н.Н. Кузнецов';
+final String devFacility =
+    'Образовательное подразделение "Учебно-производственный центр"';
 
 //изменяемый индекс текущего элемента списка со страницами кос, 0 - первая страница
 int currentIndexContent = 0;
@@ -37,12 +43,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: kosName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: SplashScreen(),
     );
   }
 }
@@ -87,15 +93,16 @@ class _MyHomePageState extends State<MyHomePage> {
         desktopBody: MyCustomDesktopWidget(),
       ),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 2,
         leading: Padding(
           padding: screenWidth <= kDestopBreakpoint
               ? const EdgeInsets.symmetric(vertical: 8.0)
               : const EdgeInsets.only(left: 16, right: 5.0),
           child: screenWidth <= kDestopBreakpoint
-              ? Image.asset('assets/images/gz_s.jpg')
+              ? Image.asset('assets/images/gz.png')
               : Image.asset(
-                  'assets/images/gzlogo.jpg',
+                  'assets/images/gzlogo.png',
                 ),
         ),
         leadingWidth: screenWidth <= kDestopBreakpoint ? 56 : 140,
@@ -106,20 +113,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 '$kosName',
                 style: TextStyle(color: kMainBlueColor),
               )
-            : RichText(
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                text: TextSpan(children: [
-                  TextSpan(
-                      text: '$kosName',
-                      style: TextStyle(
-                          color: kMainBlueColor, fontSize: 22, height: 2)),
-                  TextSpan(
-                      text:
-                          '\n© $kosYearг. ОП «Учебно-производственный центр» ООО «Газпром трансгаз Ухта»',
-                      style: TextStyle(color: Colors.grey))
-                ])),
+            : FittedBox(
+                child: RichText(
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    text: TextSpan(children: [
+                      TextSpan(
+                          text: '$kosName',
+                          style: TextStyle(
+                              color: kMainBlueColor, fontSize: 22, height: 2)),
+                      TextSpan(
+                          text:
+                              '\n© $kosYearг. ОП «Учебно-производственный центр» ООО «Газпром трансгаз Ухта»',
+                          style: TextStyle(color: Colors.grey))
+                    ])),
+              ),
 
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         iconTheme: IconThemeData(color: kMainBlueColor),
@@ -174,98 +183,106 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       //* FLOATING ACTION BUTTONS
-      floatingActionButton: Padding(
-        padding: screenWidth <= kDestopBreakpoint
-            ? const EdgeInsets.all(0.0)
-            : const EdgeInsets.all(64.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            FloatingActionButton(
-              backgroundColor: kMainBlueColor,
-              tooltip: 'Назад',
-              onPressed: () {
-                currentIndexContent--;
-                //не может быть меньше 0, т.к. 0 это первая страница
-                if (currentIndexContent < 0) currentIndexContent++;
-                currentPage = contentList[currentIndexContent];
-                setState(() {});
-              },
-              child: Icon(Icons.navigate_before),
-            ),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () {
-                  _drawerKey.currentState?.openEndDrawer();
-                },
-                child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    child: Text(
-                      '${currentIndexContent + 1} / ${contentList.length}',
-                      style: TextStyle(fontSize: 16),
-                    )),
+      floatingActionButton: screenWidth <= kDestopBreakpoint
+          ? null
+          : Padding(
+              padding: screenWidth <= kDestopBreakpoint
+                  ? const EdgeInsets.all(0.0)
+                  : const EdgeInsets.all(64.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FloatingActionButton(
+                    heroTag: 'FABback',
+                    backgroundColor: kMainBlueColor,
+                    tooltip: 'Назад',
+                    onPressed: () {
+                      currentIndexContent--;
+                      //не может быть меньше 0, т.к. 0 это первая страница
+                      if (currentIndexContent < 0) currentIndexContent++;
+                      currentPage = contentList[currentIndexContent];
+                      setState(() {});
+                    },
+                    child: Icon(Icons.navigate_before),
+                  ),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () {
+                        _drawerKey.currentState?.openEndDrawer();
+                      },
+                      child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          color: Theme.of(context).scaffoldBackgroundColor,
+                          child: Text(
+                            '${currentIndexContent + 1} / ${contentList.length}',
+                            style: TextStyle(fontSize: 16),
+                          )),
+                    ),
+                  ),
+                  FloatingActionButton(
+                    heroTag: 'FABnext',
+                    backgroundColor: kMainBlueColor,
+                    tooltip: 'Далее',
+                    onPressed: () {
+                      currentIndexContent++;
+                      //не может быть больше чем индекс последнего элемента списка т.к. это последняя страница кос
+                      if (currentIndexContent > contentList.length - 1)
+                        currentIndexContent--;
+                      currentPage = contentList[currentIndexContent];
+                      setState(() {});
+                    },
+                    child: Icon(Icons.navigate_next),
+                  ),
+                ],
               ),
             ),
-            FloatingActionButton(
-              backgroundColor: kMainBlueColor,
-              tooltip: 'Далее',
-              onPressed: () {
-                currentIndexContent++;
-                //не может быть больше чем индекс последнего элемента списка т.к. это последняя страница кос
-                if (currentIndexContent > contentList.length - 1)
-                  currentIndexContent--;
-                currentPage = contentList[currentIndexContent];
-                setState(() {});
-              },
-              child: Icon(Icons.navigate_next),
-            ),
-          ],
-        ),
-      ),
 
       //* BOTTOM NAVIGATION
-      // bottomNavigationBar: SizedBox(
-      //   height:
-      //       screenWidth <= kDestopBreakpoint ? kBottomNavigationBarHeight : 80,
-      //   child: BottomNavigationBar(
-      //     onTap: onTappedBar,
-      //     type: BottomNavigationBarType.fixed,
-      //     //showSelectedLabels: false,
-      //     //showUnselectedLabels: false,
-      //     selectedItemColor: kMainBlueColor,
-      //     unselectedItemColor: kMainBlueColor,
-      //     items: [
-      //       BottomNavigationBarItem(
-      //           icon: Icon(
-      //             Icons.navigate_before,
-      //             size: screenWidth <= kDestopBreakpoint
-      //                 ? IconTheme.of(context).size
-      //                 : 34,
-      //           ),
-      //           label: 'Назад'),
-      //       //текущая страница / всего страниц
-      //       BottomNavigationBarItem(
-      //           tooltip: 'Открыть меню',
-      //           icon: Icon(
-      //             Icons.format_list_numbered_rounded,
-      //             size: screenWidth <= kDestopBreakpoint
-      //                 ? IconTheme.of(context).size
-      //                 : 34,
-      //           ),
-      //           label: '${currentIndexContent + 1} / ${contentList.length}'),
-      //       BottomNavigationBarItem(
-      //           icon: Icon(
-      //             Icons.navigate_next,
-      //             size: screenWidth <= kDestopBreakpoint
-      //                 ? IconTheme.of(context).size
-      //                 : 34,
-      //           ),
-      //           label: 'Далее'),
-      //     ],
-      //   ),
-      // ),
+      bottomNavigationBar: screenWidth > kDestopBreakpoint
+          ? null
+          : SizedBox(
+              height: screenWidth <= kDestopBreakpoint
+                  ? kBottomNavigationBarHeight
+                  : 80,
+              child: BottomNavigationBar(
+                onTap: onTappedBar,
+                type: BottomNavigationBarType.fixed,
+                //showSelectedLabels: false,
+                //showUnselectedLabels: false,
+                selectedItemColor: kMainBlueColor,
+                unselectedItemColor: kMainBlueColor,
+                items: [
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.navigate_before,
+                        size: screenWidth <= kDestopBreakpoint
+                            ? IconTheme.of(context).size
+                            : 34,
+                      ),
+                      label: 'Назад'),
+                  //текущая страница / всего страниц
+                  BottomNavigationBarItem(
+                      tooltip: 'Открыть меню',
+                      icon: Icon(
+                        Icons.format_list_numbered_rounded,
+                        size: screenWidth <= kDestopBreakpoint
+                            ? IconTheme.of(context).size
+                            : 34,
+                      ),
+                      label:
+                          '${currentIndexContent + 1} / ${contentList.length}'),
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.navigate_next,
+                        size: screenWidth <= kDestopBreakpoint
+                            ? IconTheme.of(context).size
+                            : 34,
+                      ),
+                      label: 'Далее'),
+                ],
+              ),
+            ),
     );
   }
 }
