@@ -10,9 +10,8 @@ void main() {
   runApp(MyApp());
 }
 
-//TODO вставка фото с подписью и без
 //TODO вставка видео
-//TODO вставка крутилки
+//TODO вставка крутилки или просто 3d?
 //TODO вставка таблицы
 
 final String kosName = 'Название компьютерной обучающей системы';
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: SplashScreen(),
     );
   }
 }

@@ -18,23 +18,26 @@ class SplashScreen extends StatelessWidget {
             }),
           );
         },
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(64.0),
-            child: screenWidth <= kDestopBreakpoint
-                ? InfoBlock()
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/logoBig2.jpg',
-                        width: 400,
-                      ),
-                      Flexible(
-                        child: InfoBlock(),
-                      ),
-                    ],
-                  ),
+        child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(64.0),
+              child: screenWidth <= kDestopBreakpoint
+                  ? InfoBlock()
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/logoBig2.jpg',
+                          width: 400,
+                        ),
+                        Flexible(
+                          child: InfoBlock(),
+                        ),
+                      ],
+                    ),
+            ),
           ),
         ),
       ),
