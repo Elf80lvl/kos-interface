@@ -10,7 +10,6 @@ void main() {
   runApp(MyApp());
 }
 
-//TODO выделить пункт выбранного меню
 //TODO вставка фото с подписью и без
 //TODO вставка видео
 //TODO вставка крутилки
@@ -33,6 +32,13 @@ List<Widget> contentList = [
   Content2(),
 ];
 
+// var contentMap = {
+//   Content1(): 'Первый пункт в меню',
+//   Content2(): 'Второй пункт в меню',
+// };
+
+List<String> menuItems = ['Первый пункт в меню', 'Второй пункт меню'];
+
 //текущая страница кос
 Widget currentPage = contentList[currentIndexContent];
 
@@ -48,7 +54,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(),
+      home: MyHomePage(),
     );
   }
 }
@@ -80,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     currentPage = contentList[currentIndexContent];
+    //currentPage = contentMap.keys.toList()[currentIndexContent];
     setState(() {});
   }
 
@@ -154,32 +161,26 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       endDrawer: Drawer(
-        child: ListView(
-          children: [
-            ListTile(
-              title: Text(
-                'Первый пункт меню',
-              ),
-              onTap: () {
-                currentIndexContent = 0;
-                currentPage = contentList[currentIndexContent];
-                setState(() {});
-                print(currentPage);
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Второй пункт меню'),
-              onTap: () {
-                currentIndexContent = 1;
-                currentPage = contentList[currentIndexContent];
-                setState(() {});
-                print(currentPage);
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+        child: ListView.builder(
+            itemCount: contentList.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(
+                  menuItems[index],
+                  style: TextStyle(
+                      color: currentIndexContent == index
+                          ? kMainBlueColor
+                          : Colors.black),
+                ),
+                onTap: () {
+                  //меняем индекс текущей страницы, меняем виджет текущей страницы соотвественно куда кликнули
+                  currentIndexContent = index;
+                  currentPage = contentList[currentIndexContent];
+                  setState(() {});
+                  Navigator.pop(context);
+                },
+              );
+            }),
       ),
 
       //* FLOATING ACTION BUTTONS
@@ -188,13 +189,14 @@ class _MyHomePageState extends State<MyHomePage> {
           : Padding(
               padding: screenWidth <= kDestopBreakpoint
                   ? const EdgeInsets.all(0.0)
-                  : const EdgeInsets.all(64.0),
+                  : const EdgeInsets.all(32.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   FloatingActionButton(
-                    heroTag: 'FABback',
-                    backgroundColor: kMainBlueColor,
+                    heroTag: 'FABback', //чтобы избежать странной ошибки
+                    backgroundColor: kMainBlueColor.withOpacity(0.9),
+                    elevation: 0,
                     tooltip: 'Назад',
                     onPressed: () {
                       currentIndexContent--;
@@ -222,7 +224,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   FloatingActionButton(
                     heroTag: 'FABnext',
-                    backgroundColor: kMainBlueColor,
+                    backgroundColor: kMainBlueColor.withOpacity(0.9),
+                    elevation: 0,
                     tooltip: 'Далее',
                     onPressed: () {
                       currentIndexContent++;

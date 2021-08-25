@@ -52,40 +52,42 @@ class InfoBlock extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(32.0),
       color: Color(0xff1e85c5),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            kosType,
-            style: TextStyle(color: Colors.white.withOpacity(0.6)),
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            '$kosName',
-            style: TextStyle(color: Colors.white, fontSize: 22),
-          ),
-          SizedBox(height: 32.0),
-          Text(
-            'Постановка: $writers',
-            style: TextStyle(color: Colors.white.withOpacity(0.6)),
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            'Разработка: $developers',
-            style: TextStyle(color: Colors.white.withOpacity(0.6)),
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            '© $devFacility',
-            style: TextStyle(color: Colors.white.withOpacity(0.6)),
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            'ООО "Газпром трансгаз Ухта". $kosYearг.',
-            style: TextStyle(color: Colors.white.withOpacity(0.6)),
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              kosType,
+              style: TextStyle(color: Colors.white.withOpacity(0.6)),
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              '$kosName',
+              style: TextStyle(color: Colors.white, fontSize: 22),
+            ),
+            SizedBox(height: 32.0),
+            Text(
+              'Постановка: $writers',
+              style: TextStyle(color: Colors.white.withOpacity(0.6)),
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              'Разработка: $developers',
+              style: TextStyle(color: Colors.white.withOpacity(0.6)),
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              '© $devFacility',
+              style: TextStyle(color: Colors.white.withOpacity(0.6)),
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              'ООО "Газпром трансгаз Ухта". $kosYearг.',
+              style: TextStyle(color: Colors.white.withOpacity(0.6)),
+            ),
+          ],
+        ),
       ),
     );
   }
