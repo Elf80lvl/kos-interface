@@ -22,7 +22,9 @@ class SplashScreen extends StatelessWidget {
           cursor: SystemMouseCursors.click,
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(64.0),
+              padding: screenWidth <= kDestopBreakpoint
+                  ? const EdgeInsets.all(16.0)
+                  : const EdgeInsets.all(64.0),
               child: screenWidth <= kDestopBreakpoint
                   ? InfoBlock()
                   : Row(
@@ -52,8 +54,11 @@ class InfoBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      padding: const EdgeInsets.all(32.0),
+      padding: screenWidth <= kDestopBreakpoint
+          ? const EdgeInsets.all(16.0)
+          : const EdgeInsets.all(32.0),
       color: Color(0xff1e85c5),
       child: SingleChildScrollView(
         child: Column(

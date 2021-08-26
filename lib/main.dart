@@ -143,9 +143,9 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           Builder(
             builder: (context) => IconButton(
+              iconSize: screenWidth <= kDestopBreakpoint ? 24 : 32,
               icon: Icon(
                 Icons.menu,
-                size: screenWidth <= kDestopBreakpoint ? 24 : 32,
               ),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
               tooltip: 'Открыть меню',
@@ -194,8 +194,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   FloatingActionButton(
                     heroTag: 'FABback', //чтобы избежать странной ошибки
-                    backgroundColor: kMainBlueColor.withOpacity(0.9),
-                    elevation: 0,
+                    backgroundColor: kMainBlueColor,
+                    //backgroundColor: kMainBlueColor.withOpacity(0.9),
+                    //elevation: 0,
                     tooltip: 'Назад',
                     onPressed: () {
                       currentIndexContent--;
@@ -223,8 +224,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   FloatingActionButton(
                     heroTag: 'FABnext',
-                    backgroundColor: kMainBlueColor.withOpacity(0.9),
-                    elevation: 0,
+                    backgroundColor: kMainBlueColor,
+                    //backgroundColor: kMainBlueColor.withOpacity(0.9),
+                    //elevation: 0,
                     tooltip: 'Далее',
                     onPressed: () {
                       currentIndexContent++;

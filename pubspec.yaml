@@ -30,7 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   video_player: ^2.1.14
   chewie: ^1.2.2
-  model_viewer: ^0.8.1
+  flutter_cube: ^0.1.1
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +51,7 @@ flutter:
   assets:
     - assets/images/
     - assets/photos/
+    - assets/sequence/cube/
     - assets/models/
   #   - images/a_dot_ham.jpeg
 

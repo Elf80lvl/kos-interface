@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kos_interface/breakpoints.dart';
 
 class InsertTitle extends StatelessWidget {
   final String titleText;
@@ -6,8 +7,11 @@ class InsertTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Align(
-      alignment: Alignment.center,
+      alignment: screenWidth <= kDestopBreakpoint
+          ? Alignment.centerLeft
+          : Alignment.center,
       child: Padding(
         padding: const EdgeInsets.only(top: 32, bottom: 16),
         child: SelectableText(
