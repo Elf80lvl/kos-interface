@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
       title: kosName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        accentColor: kMainBlueColor,
       ),
       home: MyHomePage(),
     );

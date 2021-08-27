@@ -18,7 +18,7 @@ class InsertImportantText extends StatelessWidget {
           ),
           color: Colors.black12,
         ),
-        child: Text(
+        child: SelectableText(
           text,
           style: TextStyle(
               fontSize: 18,

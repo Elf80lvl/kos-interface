@@ -44,3 +44,35 @@ class FullScreenPhoto extends StatelessWidget {
     );
   }
 }
+
+
+// import 'package:flutter/material.dart';
+// import 'package:kos_interface/breakpoints.dart';
+// import 'package:kos_interface/components/button_close.dart';
+// import 'package:photo_view/photo_view.dart';
+
+// class FullScreenPhoto extends StatelessWidget {
+//   const FullScreenPhoto(this.name);
+
+//   final String name;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final screenWidth = MediaQuery.of(context).size.width;
+//     return Scaffold(
+//       body: Stack(
+//         children: [
+//           Container(
+//             child: Hero(
+//               tag: 'imageHero',
+//               child: PhotoView(
+//                 imageProvider: AssetImage("assets/photos/$name"),
+//               ),
+//             ),
+//           ),
+//           Positioned(top: 32, right: 32, child: ButtonClose()),
+//         ],
+//       ),
+//     );
+//   }
+// }

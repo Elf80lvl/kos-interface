@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kos_interface/breakpoints.dart';
@@ -70,21 +71,29 @@ class Content1 extends StatelessWidget {
               InsertTitle('Фотографии, картинки, схемы'),
 
               InsertText('Пример использования полноразмерного фото:'),
-
               //Вставка фото полноразмерного. sign - опционально, подпись под фото
               InsertPhoto(
                 name: 'ben-lowe-sqdY_rJg8wg-unsplash.jpg',
                 sign: 'Подпись фото',
               ),
-
+              InsertText('Пример использования галлереи изображений:'),
+              //TODO галлерея изображений
+              TextButton(
+                onPressed: () {},
+                child: Text('Go to gallery'),
+              ),
               InsertTitle('Примеры вставки трехмерных объектов'),
-
-              InsertText('Пример 3D модели:'),
-
+              InsertText('Пример кнопки 3D модели:'),
               //кнопка на открытие 3д модели в новом окне. "previewImage" - опционально. Путь к картинке, которая будет использоваться как превью, можно взять картинку из секвенции если она есть или из папки assets/photos
               Insert3D(
                 modelName: 'monkey.obj',
                 //previewImage: 'assets/sequence/monkey/0001.png',
+              ),
+
+              InsertText('Пример кнопки 3D модели с превью изображением:'),
+              Insert3D(
+                modelName: 'monkey.obj',
+                previewImage: 'assets/sequence/monkey/0001.png',
               ),
 
               InsertText('Пример секвенции изображений:'),
@@ -112,7 +121,18 @@ class Content1 extends StatelessWidget {
       TextSpan(text: '$text ', style: kDefaultTextStyle);
 }
 
-
+class PhotoInGallery extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.grey,
+      width: kMaxBodyWidth / 6,
+      child: CachedNetworkImage(
+        imageUrl: 'assets/photos/sampleSmall.jpg',
+      ),
+    );
+  }
+}
 
 // ImageSequenceAnimator(
 //   'assets/sequence/example', 'file_', 1, 4, 'png', 4,
