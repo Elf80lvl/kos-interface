@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kos_interface/breakpoints.dart';
-import 'package:kos_interface/components/flutter_cube.dart';
+import 'package:kos_interface/components/insert_3d.dart';
+import 'package:kos_interface/components/insert_important_text.dart';
+import 'package:kos_interface/components/insert_paragraph.dart';
 import 'package:kos_interface/components/insert_photo.dart';
+import 'package:kos_interface/components/insert_sequence.dart';
 import 'package:kos_interface/components/insert_text.dart';
 import 'package:kos_interface/components/insert_title.dart';
+import 'package:kos_interface/const.dart';
 
 class Content1 extends StatelessWidget {
   const Content1({
@@ -15,7 +19,7 @@ class Content1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-          right: 16.0, left: 16.0, top: 0.0, bottom: 32.0),
+          right: 16.0, left: 16.0, top: 0, bottom: 32.0 + 64.0),
       child: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
@@ -23,100 +27,99 @@ class Content1 extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //* Название раздела */
+              //! НАЧАЛО
+              //* Перед началом работы необходимо
+              //*1. создать папки и/или наполнить для хранения изображений и прочего, например:
+              //* assets/sequence/monkey - папка с секвенцией изображений
+              //* assets/sequence/cube - другая папка с секвенцией изображений
+              //* assets/photos - изображения, фотографии
+              //* assets/models - 3д модели
+              //*2. Так как секвенции в разных папках, необходимо добавить путь к каждой папке c секвенциями в pubspec.yaml (не нужно если у вас нет секвенций)
+
+              //Название раздела
               InsertTitle('Примеры раздела, текста и прочего'),
 
-              //* Просто текст */
+              //Просто текст
               InsertText(
-                  'Зафиксированная на каком-либо материальном носителе человеческая мысль; в общем плане связная и полная последовательность символов. Существуют две основные трактовки понятия «текст»: имманентная (расширенная, философски нагруженная) и репрезентативная (более частная). Имманентный подход подразумевает отношение к тексту как к автономной реальности, нацеленность на выявление его внутренней структуры.'),
-              InsertText('Пример использования фото:'),
+                  'Текст (от лат. textus — ткань; сплетение, сочетание) — зафиксированная на каком-либо материальном носителе человеческая мысль; в общем плане связная и полная последовательность символов.'),
+              InsertText(
+                  'Существуют две основные трактовки понятия «текст»: имманентная (расширенная, философски нагруженная) и репрезентативная (более частная). Имманентный подход подразумевает отношение к тексту как к автономной реальности, нацеленность на выявление его внутренней структуры. Репрезентативный — рассмотрение текста как особой формы представления информации о внешней тексту действительности.'),
+              InsertTitle('Название другого раздела'),
+
+              InsertText(
+                  'В лингвистике термин «текст» используется в широком значении, включая и образцы устной речи. Восприятие текста изучается в рамках лингвистики текста и психолингвистики. Так, например, И. Р. Гальперин определяет текст следующим образом: «Это письменное сообщение, объективированное в виде письменного документа, состоящее из ряда высказываний, объединённых разными типами лексической, грамматической и логической связи, имеющее определённый моральный характер, прагматическую установку и соответственно литературно обработанное»[1].'),
+
+              //Важный текст
+              InsertImportantText(
+                  'Главный тезис — текст состоит из двух или более предложений.'),
+
+              InsertText(
+                  'Текст, в своем роде, состоит из некоторого количества предложений. Одно предложение, даже очень распространённое, сложное, текстом назвать нельзя, поскольку текст можно разделить на самостоятельные предложения, а части предложения сочетаются по законам синтаксиса сложного предложения, но не текста.'),
+
+              //Абзац текста с разным выделением в одну строку. Курсивом, жирный.
+              InsertParagraph(
+                [
+                  normal('Пример использования'),
+                  italic('курсива'),
+                  normal('и'),
+                  bold('жирного'),
+                  normal('текста в одном абзаце.'),
+                ],
+              ),
+
+              InsertTitle('Фотографии, картинки, схемы'),
+
+              InsertText('Пример использования полноразмерного фото:'),
+
+              //Вставка фото полноразмерного. sign - опционально, подпись под фото
               InsertPhoto(
-                photoUrl: 'assets/photos/ben-lowe-sqdY_rJg8wg-unsplash.jpg',
+                name: 'ben-lowe-sqdY_rJg8wg-unsplash.jpg',
                 sign: 'Подпись фото',
               ),
+
+              InsertTitle('Примеры вставки трехмерных объектов'),
+
               InsertText('Пример 3D модели:'),
-              //InsertSequence(),
 
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return FlutterCube();
-                      }),
-                    );
-                  },
-                  child: Text('Открыть 3D модель')),
+              //кнопка на открытие 3д модели в новом окне. "previewImage" - опционально. Путь к картинке, которая будет использоваться как превью, можно взять картинку из секвенции если она есть или из папки assets/photos
+              Insert3D(
+                modelName: 'monkey.obj',
+                //previewImage: 'assets/sequence/monkey/0001.png',
+              ),
 
-              //*Отступ в конце
-              SizedBox(height: 64),
+              InsertText('Пример секвенции изображений:'),
+
+              //Вставка секвенции изображений, она же "крутилка". Файлы должны иметь следующий формат: "0001.png", "0002.png" и тд.
+              //folderName - имя папки в папке assets/sequence.
+              //fileType - расширение изображений, например 'png' или 'jpg'
+              //max - количество изображений. На данный момент не рекомендуется вставлять более 10-15 изображений или не оптимизированных тяжеловесных картинок
+              InsertSequence(folderName: 'monkey', fileType: 'png', max: 10),
+
+              //! КОНЕЦ
             ],
           ),
         ),
       ),
     );
   }
-}
 
-class InsertSequence extends StatefulWidget {
-  @override
-  _InsertSequenceState createState() => _InsertSequenceState();
-}
+  TextSpan bold(String text) => TextSpan(text: '$text ', style: kBoldTextStyle);
 
-class _InsertSequenceState extends State<InsertSequence> {
-  var name = 1;
-  final url = 'assets/sequence/cube/';
-  final int max = 100;
+  TextSpan italic(String text) =>
+      TextSpan(text: '$text ', style: kItalicTextStyle);
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () {
-              print(name.toString().padLeft(4, '0'));
-            },
-            child: FadeInImage.assetNetwork(
-                fadeInDuration: Duration(milliseconds: 1),
-                fadeOutDuration: Duration(milliseconds: 1),
-                placeholder: '$url${name.toString().padLeft(4, '0')}.png',
-                image: '$url${name.toString().padLeft(4, '0')}.png'),
-          ),
-          Container(
-            width: double.infinity,
-            child: Slider.adaptive(
-                value: name.toDouble(),
-                min: 1,
-                max: max.toDouble(),
-                onChanged: (value) {
-                  setState(() {
-                    name = value.toInt();
-                  });
-                }),
-          ),
-        ],
-      ),
-    );
-  }
+  TextSpan normal(String text) =>
+      TextSpan(text: '$text ', style: kDefaultTextStyle);
 }
 
 
 
-
-
-
-
-
-
-
-        // ImageSequenceAnimator(
-        //   'assets/sequence/example', 'file_', 1, 4, 'png', 4,
-        //   key: Key("offline"),
-        //   //isAutoPlay: true,
-        //   //isLooping: true
-        // ),
+// ImageSequenceAnimator(
+//   'assets/sequence/example', 'file_', 1, 4, 'png', 4,
+//   key: Key("offline"),
+//   //isAutoPlay: true,
+//   //isLooping: true
+// ),
 
 //imageSequenceAnimator!.skip(value);
 

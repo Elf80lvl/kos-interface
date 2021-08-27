@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kos_interface/const.dart';
 
 class InsertText extends StatelessWidget {
   final String text;
@@ -7,10 +8,13 @@ class InsertText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: SelectableText(
         text,
-        style: TextStyle(fontSize: 18, height: 1.6),
+        style: TextStyle(
+          fontSize: 18,
+          height: kTextHeight,
+        ),
       ),
     );
   }

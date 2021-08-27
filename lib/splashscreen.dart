@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: Color(0xff006fb7),
       body: GestureDetector(
         onTap: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) {
               return MyHomePage();

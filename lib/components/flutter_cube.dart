@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/flutter_cube.dart';
 import 'package:kos_interface/breakpoints.dart';
+import 'package:kos_interface/components/button_close.dart';
 
 class FlutterCube extends StatefulWidget {
-  const FlutterCube({Key? key}) : super(key: key);
+  final double size;
+  final modelName;
+  const FlutterCube({Key? key, this.size = 8, this.modelName})
+      : super(key: key);
 
   @override
   _FlutterCubeState createState() => _FlutterCubeState();
 }
 
 class _FlutterCubeState extends State<FlutterCube> {
-  double size = 8;
-  late var zoom;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -28,40 +30,21 @@ class _FlutterCubeState extends State<FlutterCube> {
               onSceneCreated: (Scene scene) {
                 scene.world.add(
                   Object(
-                    fileName: 'assets/models/monkey.obj',
+                    fileName: 'assets/models/${widget.modelName}',
                     lighting: true,
                   ),
                 );
-                scene.camera.zoom = size;
+                //уменьшить размер модели если на мобилке
+                screenWidth <= kDestopBreakpoint
+                    ? scene.camera.zoom = widget.size - 2
+                    : scene.camera.zoom = widget.size;
               },
             ),
           ),
           Positioned(
             right: 32,
             top: 32,
-            child: InkResponse(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(Icons.close),
-              ),
-            ),
-            // child: IconButton(
-
-            //   iconSize: 32,
-            //   color: Colors.grey[300],
-            //   onPressed: () {
-            //     Navigator.pop(context);
-            //   },
-            //   icon: Icon(Icons.close),
-            // ),
+            child: ButtonClose(),
           ),
         ],
       ),

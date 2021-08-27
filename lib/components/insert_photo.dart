@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kos_interface/components/full_screen_photo.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:kos_interface/const.dart';
 
 class InsertPhoto extends StatelessWidget {
-  final String photoUrl;
+  final String name;
   final String sign;
 
-  const InsertPhoto({required this.photoUrl, required this.sign});
+  const InsertPhoto({required this.name, this.sign = ''});
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +16,25 @@ class InsertPhoto extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return FullScreenPhoto(photoUrl);
+            return FullScreenPhoto(name);
           }));
         },
         child: Center(
           child: Column(
             children: [
               Hero(
-                  tag: 'imageHero',
-                  child: MouseRegion(
-                      cursor: SystemMouseCursors.zoomIn,
-                      child: Image.asset(photoUrl))),
-              SizedBox(height: 8.0),
+                tag: 'imageHero',
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.zoomIn,
+                  child: ClipRRect(
+                    borderRadius: kBorderRadius,
+                    child: CachedNetworkImage(
+                      imageUrl: 'assets/photos/$name',
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 16.0),
               Text(
                 sign,
                 style: TextStyle(color: Colors.grey[600]),

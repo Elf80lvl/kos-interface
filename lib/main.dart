@@ -11,10 +11,13 @@ void main() {
 }
 
 //TODO вставка видео
-//TODO вставка крутилки или просто 3d?
+//TODO вставка фотогалелреи
 //TODO вставка таблицы
+//TODO втсавка выделенного важного текста
+//TODO втсавка курсива, жирного, ссылки на фото или 3д
 
-final String kosName = 'Название компьютерной обучающей системы';
+final String kosName =
+    'Название компьютерной обучающей системы с очень очень очень длинным именем';
 final String kosType = 'Компьютерная обучающая система';
 final String kosYear = '2021';
 final String writers = 'А.А. Иванов, В.В. Петров';
@@ -36,7 +39,10 @@ List<Widget> contentList = [
 //   Content2(): 'Второй пункт в меню',
 // };
 
-List<String> menuItems = ['Первый пункт в меню', 'Второй пункт меню'];
+List<String> menuItems = [
+  'Первый пункт в меню',
+  'Второй пункт меню',
+];
 
 //текущая страница кос
 Widget currentPage = contentList[currentIndexContent];
@@ -53,7 +59,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(),
+      home: MyHomePage(),
     );
   }
 }
@@ -85,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     currentPage = contentList[currentIndexContent];
-    //currentPage = contentMap.keys.toList()[currentIndexContent];
+
     setState(() {});
   }
 
@@ -101,15 +107,28 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 2,
-        leading: Padding(
-          padding: screenWidth <= kDestopBreakpoint
-              ? const EdgeInsets.symmetric(vertical: 8.0)
-              : const EdgeInsets.only(left: 16, right: 5.0),
-          child: screenWidth <= kDestopBreakpoint
-              ? Image.asset('assets/images/gz.png')
-              : Image.asset(
-                  'assets/images/gzlogo.png',
-                ),
+        leading: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return SplashScreen();
+                }),
+              );
+            },
+            child: Padding(
+              padding: screenWidth <= kDestopBreakpoint
+                  ? const EdgeInsets.symmetric(vertical: 8.0)
+                  : const EdgeInsets.only(left: 16, right: 5.0),
+              child: screenWidth <= kDestopBreakpoint
+                  ? Image.asset('assets/images/gz.png')
+                  : Image.asset(
+                      'assets/images/gzlogo.png',
+                    ),
+            ),
+          ),
         ),
         leadingWidth: screenWidth <= kDestopBreakpoint ? 56 : 140,
         toolbarHeight: screenWidth <= kDestopBreakpoint ? kToolbarHeight : 100,
@@ -117,24 +136,30 @@ class _MyHomePageState extends State<MyHomePage> {
         title: screenWidth <= kDestopBreakpoint
             ? Text(
                 '$kosName',
+                maxLines: 2,
                 style: TextStyle(color: kMainBlueColor),
               )
-            : FittedBox(
-                child: RichText(
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    text: TextSpan(children: [
-                      TextSpan(
-                          text: '$kosName',
-                          style: TextStyle(
-                              color: kMainBlueColor, fontSize: 22, height: 2)),
-                      TextSpan(
-                          text:
-                              '\n© $kosYearг. ОП «Учебно-производственный центр» ООО «Газпром трансгаз Ухта»',
-                          style: TextStyle(color: Colors.grey))
-                    ])),
-              ),
+            : RichText(
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                text: TextSpan(children: [
+                  TextSpan(
+                    text: '$kosName',
+                    style: TextStyle(
+                      color: kMainBlueColor, fontSize: 22,
+                      //height: 2,
+                    ),
+                  ),
+                  TextSpan(
+                    text:
+                        '\n© $kosYearг. ОП «Учебно-производственный центр» ООО «Газпром трансгаз Ухта»',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      height: 1.5,
+                    ),
+                  ),
+                ])),
 
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         iconTheme: IconThemeData(color: kMainBlueColor),
@@ -215,7 +240,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          color: Theme.of(context).scaffoldBackgroundColor,
+                          //color: Theme.of(context).scaffoldBackgroundColor,
                           child: Text(
                             '${currentIndexContent + 1} / ${contentList.length}',
                             style: TextStyle(fontSize: 16),
@@ -252,6 +277,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: BottomNavigationBar(
                 onTap: onTappedBar,
                 type: BottomNavigationBarType.fixed,
+                selectedFontSize: 12,
+                unselectedFontSize: 12,
                 //showSelectedLabels: false,
                 //showUnselectedLabels: false,
                 selectedItemColor: kMainBlueColor,
@@ -260,28 +287,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   BottomNavigationBarItem(
                       icon: Icon(
                         Icons.navigate_before,
-                        size: screenWidth <= kDestopBreakpoint
-                            ? IconTheme.of(context).size
-                            : 34,
                       ),
                       label: 'Назад'),
                   //текущая страница / всего страниц
                   BottomNavigationBarItem(
-                      tooltip: 'Открыть меню',
-                      icon: Icon(
-                        Icons.format_list_numbered_rounded,
-                        size: screenWidth <= kDestopBreakpoint
-                            ? IconTheme.of(context).size
-                            : 34,
-                      ),
-                      label:
-                          '${currentIndexContent + 1} / ${contentList.length}'),
+                    tooltip: 'Открыть меню',
+                    icon: Icon(
+                      Icons.format_list_numbered_rounded,
+                    ),
+                    label: '${currentIndexContent + 1} / ${contentList.length}',
+                  ),
+
                   BottomNavigationBarItem(
                       icon: Icon(
                         Icons.navigate_next,
-                        size: screenWidth <= kDestopBreakpoint
-                            ? IconTheme.of(context).size
-                            : 34,
                       ),
                       label: 'Далее'),
                 ],
