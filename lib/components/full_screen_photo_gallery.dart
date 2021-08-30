@@ -3,8 +3,6 @@ import 'package:kos_interface/breakpoints.dart';
 import 'package:kos_interface/components/button_close.dart';
 import 'package:kos_interface/components/button_next.dart';
 import 'package:kos_interface/components/button_prev.dart';
-import 'package:kos_interface/components/insert_photo_gallery.dart';
-import 'package:kos_interface/const.dart';
 
 class FullScreenPhotoGallery extends StatefulWidget {
   String photo;

@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kos_interface/breakpoints.dart';
@@ -94,7 +93,8 @@ class Content1 extends StatelessWidget {
               InsertTitle('Примеры вставки трехмерных объектов'),
               InsertText('Пример кнопки 3D модели:'),
               //кнопка на открытие 3д модели в новом окне.
-              //"previewImage" - опционально. Путь к картинке, которая будет использоваться как превью, можно взять картинку из секвенции если она есть или из папки assets/photos
+              //"previewImage" - опционально. Путь к картинке, которая будет использоваться как превью,
+              //можно взять картинку из секвенции если она есть или из папки assets/photos
               Insert3D(
                 modelName: 'monkey.obj',
                 //previewImage: 'assets/sequence/monkey/0001.png',
@@ -108,7 +108,7 @@ class Content1 extends StatelessWidget {
 
               InsertText('Пример секвенции изображений:'),
 
-              //Вставка секвенции изображений, она же "крутилка". Файлы должны иметь следующий формат: "0001.png", "0002.png" и тд.
+              //Вставка секвенции изображений. Файлы должны иметь следующий формат: "0001.png", "0002.png" и тд.
               //folderName - имя папки в папке assets/sequence.
               //fileType - расширение изображений, например 'png' или 'jpg'
               //max - количество изображений. На данный момент не рекомендуется вставлять более 10-15 изображений или не оптимизированных тяжеловесных картинок
