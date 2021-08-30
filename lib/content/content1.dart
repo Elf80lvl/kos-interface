@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kos_interface/breakpoints.dart';
+import 'package:kos_interface/components/full_screen_photo_gallery.dart';
 import 'package:kos_interface/components/insert_3d.dart';
+import 'package:kos_interface/components/insert_grid_photo_gallery.dart';
 import 'package:kos_interface/components/insert_important_text.dart';
 import 'package:kos_interface/components/insert_paragraph.dart';
 import 'package:kos_interface/components/insert_photo.dart';
@@ -36,6 +38,10 @@ class Content1 extends StatelessWidget {
               //* assets/photos - изображения, фотографии
               //* assets/models - 3д модели
               //*2. Так как секвенции в разных папках, необходимо добавить путь к каждой папке c секвенциями в pubspec.yaml (не нужно если у вас нет секвенций)
+
+              //TODO вставка видео
+              //TODO вставка таблицы
+              //TODO вставка штуки с подсвеченными элементами
 
               //Название раздела
               InsertTitle('Примеры раздела, текста и прочего'),
@@ -77,9 +83,23 @@ class Content1 extends StatelessWidget {
                 sign: 'Подпись фото',
               ),
 
-              InsertText('Пример использования галлереи изображений:'),
+              InsertText(
+                  'Пример использования горизонтальной галлереи изображений:'),
               //галлерея изображений. Фотографии должны быть в папке assets/photos
               InsertPhotoGallery([
+                '1.jpg',
+                '2.jpg',
+                '3.jpg',
+                '4.jpg',
+                '5.jpg',
+                '6.jpg',
+                '7.jpg',
+                '8.jpg',
+              ]),
+
+              InsertText('Пример использования блочной галлереи изображений:'),
+              //галлерея изображений в виде сетки. Фотографии должны быть в папке assets/photos
+              InsertGridGallery([
                 '1.jpg',
                 '2.jpg',
                 '3.jpg',
@@ -133,6 +153,12 @@ class Content1 extends StatelessWidget {
 
 
 
+            // ClipRRect(
+            //     borderRadius: kBorderRadius,
+            //     child: FittedBox(
+            //       child: Image.asset('assets/photos/5.jpg'),
+            //       fit: BoxFit.fill,
+            //     )),
 
 
 // class PhotoInGallery extends StatelessWidget {

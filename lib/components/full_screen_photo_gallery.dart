@@ -17,6 +17,8 @@ class FullScreenPhotoGallery extends StatefulWidget {
 }
 
 class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
+  //final controller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -92,6 +94,7 @@ class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
               child: Container(
                 height: 150,
                 child: ListView.builder(
+                  //controller: controller,
                   itemCount: widget.photos.length,
                   itemBuilder: (context, index) {
                     return Padding(
