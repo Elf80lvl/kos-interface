@@ -42,6 +42,7 @@ class Content1 extends StatelessWidget {
               //TODO вставка видео
               //TODO вставка таблицы
               //TODO вставка штуки с подсвеченными элементами
+              //TODO улучшить sequence, кэшрование?
 
               //Название раздела
               InsertTitle('Примеры раздела, текста и прочего'),
@@ -85,6 +86,7 @@ class Content1 extends StatelessWidget {
 
               InsertText(
                   'Пример использования горизонтальной галлереи изображений:'),
+
               //галлерея изображений. Фотографии должны быть в папке assets/photos
               InsertPhotoGallery([
                 '1.jpg',
@@ -98,6 +100,7 @@ class Content1 extends StatelessWidget {
               ]),
 
               InsertText('Пример использования блочной галлереи изображений:'),
+
               //галлерея изображений в виде сетки. Фотографии должны быть в папке assets/photos
               InsertGridGallery([
                 '1.jpg',
@@ -112,6 +115,7 @@ class Content1 extends StatelessWidget {
 
               InsertTitle('Примеры вставки трехмерных объектов'),
               InsertText('Пример кнопки 3D модели:'),
+
               //кнопка на открытие 3д модели в новом окне.
               //"previewImage" - опционально. Путь к картинке, которая будет использоваться как превью,
               //можно взять картинку из секвенции если она есть или из папки assets/photos

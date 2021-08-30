@@ -17,6 +17,9 @@ class ButtonClose extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 2),
+          ],
         ),
         child: Icon(Icons.close),
       ),

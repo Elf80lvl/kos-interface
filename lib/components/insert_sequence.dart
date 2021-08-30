@@ -31,6 +31,21 @@ class _InsertSequenceState extends State<InsertSequence> {
               //print(name.toString().padLeft(4, '0'));
               print(widget.folderName);
             },
+            onHorizontalDragUpdate: (details) {
+              //если крутим вправо
+              if (details.primaryDelta! > 0) {
+                name >= widget.max
+                    ? name = widget.max
+                    : name = name + details.primaryDelta!.toInt();
+                //если крутим влево
+              } else if (details.primaryDelta! < 0) {
+                name <= 1
+                    ? name = 1
+                    : name = name + details.primaryDelta!.toInt();
+              }
+
+              setState(() {});
+            },
             child: FadeInImage.assetNetwork(
                 fadeInDuration: Duration(milliseconds: 1),
                 fadeOutDuration: Duration(milliseconds: 1),
