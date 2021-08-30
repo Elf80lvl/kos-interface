@@ -6,6 +6,7 @@ import 'package:kos_interface/components/insert_3d.dart';
 import 'package:kos_interface/components/insert_important_text.dart';
 import 'package:kos_interface/components/insert_paragraph.dart';
 import 'package:kos_interface/components/insert_photo.dart';
+import 'package:kos_interface/components/insert_photo_gallery.dart';
 import 'package:kos_interface/components/insert_sequence.dart';
 import 'package:kos_interface/components/insert_text.dart';
 import 'package:kos_interface/components/insert_title.dart';
@@ -76,15 +77,24 @@ class Content1 extends StatelessWidget {
                 name: 'ben-lowe-sqdY_rJg8wg-unsplash.jpg',
                 sign: 'Подпись фото',
               ),
+
               InsertText('Пример использования галлереи изображений:'),
-              //TODO галлерея изображений
-              TextButton(
-                onPressed: () {},
-                child: Text('Go to gallery'),
-              ),
+              //галлерея изображений. Фотографии должны быть в папке assets/photos
+              InsertPhotoGallery([
+                '1.jpg',
+                '2.jpg',
+                '3.jpg',
+                '4.jpg',
+                '5.jpg',
+                '6.jpg',
+                '7.jpg',
+                '8.jpg',
+              ]),
+
               InsertTitle('Примеры вставки трехмерных объектов'),
               InsertText('Пример кнопки 3D модели:'),
-              //кнопка на открытие 3д модели в новом окне. "previewImage" - опционально. Путь к картинке, которая будет использоваться как превью, можно взять картинку из секвенции если она есть или из папки assets/photos
+              //кнопка на открытие 3д модели в новом окне.
+              //"previewImage" - опционально. Путь к картинке, которая будет использоваться как превью, можно взять картинку из секвенции если она есть или из папки assets/photos
               Insert3D(
                 modelName: 'monkey.obj',
                 //previewImage: 'assets/sequence/monkey/0001.png',
@@ -121,18 +131,23 @@ class Content1 extends StatelessWidget {
       TextSpan(text: '$text ', style: kDefaultTextStyle);
 }
 
-class PhotoInGallery extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey,
-      width: kMaxBodyWidth / 6,
-      child: CachedNetworkImage(
-        imageUrl: 'assets/photos/sampleSmall.jpg',
-      ),
-    );
-  }
-}
+
+
+
+
+// class PhotoInGallery extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       color: Colors.grey,
+//       width: kMaxBodyWidth / 6,
+//       child: CachedNetworkImage(
+//         imageUrl: 'assets/photos/sampleSmall.jpg',
+//       ),
+//     );
+//   }
+// }
+
 
 // ImageSequenceAnimator(
 //   'assets/sequence/example', 'file_', 1, 4, 'png', 4,

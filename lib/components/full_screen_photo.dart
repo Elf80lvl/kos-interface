@@ -15,7 +15,7 @@ class FullScreenPhoto extends StatelessWidget {
         children: [
           Positioned.fill(
               child: Container(
-            color: Colors.black.withOpacity(0.7),
+            color: Colors.black.withOpacity(0.8),
           )),
           //Если на десктопе то можно убрать фото из фуллскрина кликом и меняется курсор, если на мобилке то нельзя потому что будет мешать при жесте масштабирования
           MouseRegion(
