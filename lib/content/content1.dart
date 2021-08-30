@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:kos_interface/breakpoints.dart';
-import 'package:kos_interface/components/full_screen_photo_gallery.dart';
+import 'package:kos_interface/components/inline_text.dart';
 import 'package:kos_interface/components/insert_3d.dart';
 import 'package:kos_interface/components/insert_grid_photo_gallery.dart';
 import 'package:kos_interface/components/insert_important_text.dart';
@@ -11,7 +12,9 @@ import 'package:kos_interface/components/insert_photo_gallery.dart';
 import 'package:kos_interface/components/insert_sequence.dart';
 import 'package:kos_interface/components/insert_text.dart';
 import 'package:kos_interface/components/insert_title.dart';
+import 'package:kos_interface/components/launch_url.dart';
 import 'package:kos_interface/const.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Content1 extends StatelessWidget {
   const Content1({
@@ -43,6 +46,7 @@ class Content1 extends StatelessWidget {
               //TODO вставка таблицы
               //TODO вставка штуки с подсвеченными элементами
               //TODO улучшить sequence, кэшрование?
+              //TODO open pdf from assets
 
               //Название раздела
               InsertTitle('Примеры раздела, текста и прочего'),
@@ -64,7 +68,7 @@ class Content1 extends StatelessWidget {
               InsertText(
                   'Текст, в своем роде, состоит из некоторого количества предложений. Одно предложение, даже очень распространённое, сложное, текстом назвать нельзя, поскольку текст можно разделить на самостоятельные предложения, а части предложения сочетаются по законам синтаксиса сложного предложения, но не текста.'),
 
-              //Абзац текста с разным выделением в одну строку. Курсивом, жирный.
+              //Абзац текста с разным выделением в одну строку. Курсивом, жирный, ссылка
               InsertParagraph(
                 [
                   normal('Пример использования'),
@@ -72,12 +76,15 @@ class Content1 extends StatelessWidget {
                   normal('и'),
                   bold('жирного'),
                   normal('текста в одном абзаце.'),
+                  normal('А также'),
+                  link('ссылки.', 'https://www.google.ru/'),
                 ],
               ),
 
               InsertTitle('Фотографии, картинки, схемы'),
 
               InsertText('Пример использования полноразмерного фото:'),
+
               //Вставка фото полноразмерного. sign - опционально, подпись под фото
               InsertPhoto(
                 name: 'ben-lowe-sqdY_rJg8wg-unsplash.jpg',
@@ -114,21 +121,8 @@ class Content1 extends StatelessWidget {
               ]),
 
               InsertTitle('Примеры вставки трехмерных объектов'),
-              InsertText('Пример кнопки 3D модели:'),
 
-              //кнопка на открытие 3д модели в новом окне.
-              //"previewImage" - опционально. Путь к картинке, которая будет использоваться как превью,
-              //можно взять картинку из секвенции если она есть или из папки assets/photos
-              Insert3D(
-                modelName: 'monkey.obj',
-                //previewImage: 'assets/sequence/monkey/0001.png',
-              ),
-
-              InsertText('Пример кнопки 3D модели с превью изображением:'),
-              Insert3D(
-                modelName: 'monkey.obj',
-                previewImage: 'assets/sequence/monkey/0001.png',
-              ),
+              Insert3D('monkey.obj'),
 
               InsertText('Пример секвенции изображений:'),
 
@@ -145,64 +139,34 @@ class Content1 extends StatelessWidget {
       ),
     );
   }
-
-  TextSpan bold(String text) => TextSpan(text: '$text ', style: kBoldTextStyle);
-
-  TextSpan italic(String text) =>
-      TextSpan(text: '$text ', style: kItalicTextStyle);
-
-  TextSpan normal(String text) =>
-      TextSpan(text: '$text ', style: kDefaultTextStyle);
 }
 
 
 
-            // ClipRRect(
-            //     borderRadius: kBorderRadius,
-            //     child: FittedBox(
-            //       child: Image.asset('assets/photos/5.jpg'),
-            //       fit: BoxFit.fill,
-            //     )),
 
 
-// class PhotoInGallery extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: Colors.grey,
-//       width: kMaxBodyWidth / 6,
-//       child: CachedNetworkImage(
-//         imageUrl: 'assets/photos/sampleSmall.jpg',
-//       ),
-//     );
-//   }
-// }
 
 
-// ImageSequenceAnimator(
-//   'assets/sequence/example', 'file_', 1, 4, 'png', 4,
-//   key: Key("offline"),
-//   //isAutoPlay: true,
-//   //isLooping: true
-// ),
 
-//imageSequenceAnimator!.skip(value);
 
-// GestureDetector(
-//             onHorizontalDragUpdate: (details) {
-//               if (details.delta.dx > sensitivity) {
-//                 // Right Swipe
-//                 setState(() {
-//                   name++;
-//                   if (name > 4) name = 4;
-//                   print(name);
-//                 });
-//               } else if (details.delta.dx < -sensitivity) {
-//                 //Left Swipe
-//                 setState(() {
-//                   name--;
-//                   if (name < 1) name = 1;
-//                   print(name);
-//                 });
-//               }
-//             },
+
+
+
+
+
+
+
+
+
+              //кнопка на открытие 3д модели в новом окне.
+              //"previewImage" - опционально. Путь к картинке, которая будет использоваться как превью,
+              //можно взять картинку из секвенции если она есть или из папки assets/photos
+              // Insert3D(
+              //   modelName: 'monkey.obj',
+              //   //previewImage: 'assets/sequence/monkey/0001.png',
+              // ),
+
+              // Insert3D(
+              //   modelName: 'monkey.obj',
+              //   previewImage: 'assets/sequence/monkey/0001.png',
+              // ),
