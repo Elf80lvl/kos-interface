@@ -1,38 +1,43 @@
+//кнопка маленькая
 import 'package:flutter/material.dart';
 import 'package:kos_interface/components/flutter_cube.dart';
 
 import '../const.dart';
 
 class Insert3D extends StatelessWidget {
+  final buttonTitle;
+  final double size;
   final String modelName;
-  Insert3D(this.modelName);
+  Insert3D(
+      {required this.modelName,
+      this.size = 8,
+      this.buttonTitle = 'Открыть 3D модель'});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: ListTile(
-        title: Text(
-          'Открыть 3D модель',
-          style: TextStyle(color: kMainBlueColor),
-        ),
-        leading: Icon(
-          Icons.threed_rotation_rounded,
-          color: kMainBlueColor,
-        ),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) {
-              return FlutterCube(modelName: modelName);
-            }),
-          );
-        },
+    return ListTile(
+      title: Text(
+        buttonTitle,
+        style: TextStyle(color: kMainBlueColor),
       ),
+      leading: Icon(
+        Icons.threed_rotation_rounded,
+        color: kMainBlueColor,
+      ),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return FlutterCube(
+              modelName: modelName,
+              size: size,
+            );
+          }),
+        );
+      },
     );
   }
 }
-
 
 // import 'package:flutter/material.dart';
 // import 'package:kos_interface/components/flutter_cube.dart';

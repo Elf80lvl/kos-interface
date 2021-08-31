@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cube/flutter_cube.dart';
 import 'package:kos_interface/breakpoints.dart';
+import 'package:kos_interface/components/full_screen_scheme.dart';
 import 'package:kos_interface/components/inline_text.dart';
 import 'package:kos_interface/components/insert_3d.dart';
 import 'package:kos_interface/components/insert_grid_photo_gallery.dart';
@@ -9,6 +11,7 @@ import 'package:kos_interface/components/insert_important_text.dart';
 import 'package:kos_interface/components/insert_paragraph.dart';
 import 'package:kos_interface/components/insert_photo.dart';
 import 'package:kos_interface/components/insert_photo_gallery.dart';
+import 'package:kos_interface/components/insert_scheme.dart';
 import 'package:kos_interface/components/insert_sequence.dart';
 import 'package:kos_interface/components/insert_text.dart';
 import 'package:kos_interface/components/insert_title.dart';
@@ -120,9 +123,34 @@ class Content1 extends StatelessWidget {
                 '8.jpg',
               ]),
 
+              InsertText('Пример интерактивной схемы:'),
+
+              //Интерактивная схема
+              //scheme - имя основной схемы
+              //elements - подсвечиваемые поверх схемы элементы
+              //buttonTitle - текст в кнопке
+              //Все файлы должны быть в папке assets/photos
+              InsertScheme(
+                scheme: 'cat.jpg',
+                elements: {
+                  "catBackPaws.png": "Задние парные опорные механизмы",
+                  "catEars.png": "Направленные улавливатели шума",
+                  "catEyes.png": "Приборы ночного видения",
+                  "catFrontPaws.png": "Передние парные опорные механизмы",
+                  "catStomach.png": "Накопительный бак",
+                  "catTail.png": "Стабилизатор равновесия",
+                },
+              ),
+
               InsertTitle('Примеры вставки трехмерных объектов'),
 
-              Insert3D('monkey.obj'),
+              InsertText('Кнопка открытия 3D модели в новом окне:'),
+
+              //кнопка для 3D модели
+              //modelName - название файла модели obj в папке assets/models
+              //size - размер модели. Если размер модели слишком большой или слишком маленький используйте парамаметр size(по умолчанию 8)
+              //buttonTitle - текст на кнопке
+              Insert3D(modelName: 'monkey.obj'),
 
               InsertText('Пример секвенции изображений:'),
 
@@ -142,31 +170,15 @@ class Content1 extends StatelessWidget {
 }
 
 
+//кнопка на открытие 3д модели в новом окне.
+//"previewImage" - опционально. Путь к картинке, которая будет использоваться как превью,
+//можно взять картинку из секвенции если она есть или из папки assets/photos
+// Insert3D(
+//   modelName: 'monkey.obj',
+//   //previewImage: 'assets/sequence/monkey/0001.png',
+// ),
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              //кнопка на открытие 3д модели в новом окне.
-              //"previewImage" - опционально. Путь к картинке, которая будет использоваться как превью,
-              //можно взять картинку из секвенции если она есть или из папки assets/photos
-              // Insert3D(
-              //   modelName: 'monkey.obj',
-              //   //previewImage: 'assets/sequence/monkey/0001.png',
-              // ),
-
-              // Insert3D(
-              //   modelName: 'monkey.obj',
-              //   previewImage: 'assets/sequence/monkey/0001.png',
-              // ),
+// Insert3D(
+//   modelName: 'monkey.obj',
+//   previewImage: 'assets/sequence/monkey/0001.png',
+// ),

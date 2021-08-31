@@ -22,15 +22,12 @@ class _InsertSequenceState extends State<InsertSequence> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Column(
         children: [
           GestureDetector(
-            onTap: () {
-              //print(name.toString().padLeft(4, '0'));
-              print(widget.folderName);
-            },
             onHorizontalDragUpdate: (details) {
               //если крутим вправо
               if (details.primaryDelta! > 0) {
@@ -46,13 +43,11 @@ class _InsertSequenceState extends State<InsertSequence> {
 
               setState(() {});
             },
-            child: FadeInImage.assetNetwork(
-                fadeInDuration: Duration(milliseconds: 1),
-                fadeOutDuration: Duration(milliseconds: 1),
-                placeholder:
-                    'assets/sequence/${widget.folderName}/${name.toString().padLeft(4, '0')}.${widget.fileType}',
-                image:
-                    'assets/sequence/${widget.folderName}/${name.toString().padLeft(4, '0')}.${widget.fileType}'),
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Image.asset(
+                  'assets/sequence/${widget.folderName}/${name.toString().padLeft(4, '0')}.${widget.fileType}'),
+            ),
           ),
           Container(
             width: double.infinity,

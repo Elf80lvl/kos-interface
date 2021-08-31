@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kos_interface/components/full_screen_photo.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:kos_interface/const.dart';
 
 class InsertPhoto extends StatelessWidget {
@@ -25,12 +24,10 @@ class InsertPhoto extends StatelessWidget {
               Hero(
                 tag: 'imageHero',
                 child: MouseRegion(
-                  cursor: SystemMouseCursors.zoomIn,
+                  cursor: SystemMouseCursors.click,
                   child: ClipRRect(
                     borderRadius: kBorderRadius,
-                    child: CachedNetworkImage(
-                      imageUrl: 'assets/photos/$name',
-                    ),
+                    child: Image.asset('assets/photos/$name'),
                   ),
                 ),
               ),

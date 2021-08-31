@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kMainBlueColor = Color(0XFF0079C2);
+var kBGcolor = Colors.black.withOpacity(0.8);
 const kHeaderHeight = 100.0;
 const kCornerRadius = Radius.circular(8);
 var kBorderRadius = BorderRadius.circular(8);

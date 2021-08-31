@@ -3,6 +3,7 @@ import 'package:kos_interface/breakpoints.dart';
 import 'package:kos_interface/components/button_close.dart';
 import 'package:kos_interface/components/button_next.dart';
 import 'package:kos_interface/components/button_prev.dart';
+import 'package:kos_interface/const.dart';
 
 class FullScreenPhotoGallery extends StatefulWidget {
   String photo;
@@ -25,7 +26,7 @@ class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
-        color: Colors.black.withOpacity(0.8),
+        color: kBGcolor,
         child: Column(
           children: [
             SizedBox(height: 16),
@@ -33,21 +34,15 @@ class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
               flex: 10,
               child: Stack(
                 children: [
-                  //Если на десктопе то можно убрать фото из фуллскрина кликом и меняется курсор, если на мобилке то нельзя потому что будет мешать при жесте масштабирования
-                  MouseRegion(
-                    cursor: screenWidth > kDestopBreakpoint
-                        ? SystemMouseCursors.zoomOut
-                        : MouseCursor.defer,
-                    child: GestureDetector(
-                      onTap: () {
-                        if (screenWidth > kDestopBreakpoint) {
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: Center(
-                        child: InteractiveViewer(
-                          child: Image.asset('assets/photos/${widget.photo}'),
-                        ),
+                  GestureDetector(
+                    onTap: () {
+                      // if (screenWidth > kDestopBreakpoint) {
+                      //   Navigator.pop(context);
+                      // }
+                    },
+                    child: Center(
+                      child: InteractiveViewer(
+                        child: Image.asset('assets/photos/${widget.photo}'),
                       ),
                     ),
                   ),

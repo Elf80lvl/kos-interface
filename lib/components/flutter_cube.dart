@@ -6,7 +6,7 @@ import 'package:kos_interface/components/button_close.dart';
 class FlutterCube extends StatefulWidget {
   final double size;
   final modelName;
-  const FlutterCube({Key? key, this.size = 8, this.modelName})
+  const FlutterCube({Key? key, required this.size, this.modelName})
       : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class _FlutterCubeState extends State<FlutterCube> {
         children: [
           Positioned.fill(
               child: Container(
-            color: Colors.black.withOpacity(0.7),
+            color: Colors.black.withOpacity(0.8),
           )),
           Center(
             child: Cube(

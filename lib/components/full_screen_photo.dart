@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kos_interface/breakpoints.dart';
 import 'package:kos_interface/components/button_close.dart';
+import 'package:kos_interface/const.dart';
 
 class FullScreenPhoto extends StatelessWidget {
   const FullScreenPhoto(this.name);
@@ -15,25 +16,20 @@ class FullScreenPhoto extends StatelessWidget {
         children: [
           Positioned.fill(
               child: Container(
-            color: Colors.black.withOpacity(0.8),
+            color: kBGcolor,
           )),
           //Если на десктопе то можно убрать фото из фуллскрина кликом и меняется курсор, если на мобилке то нельзя потому что будет мешать при жесте масштабирования
-          MouseRegion(
-            cursor: screenWidth > kDestopBreakpoint
-                ? SystemMouseCursors.zoomOut
-                : MouseCursor.defer,
-            child: GestureDetector(
-              onTap: () {
-                if (screenWidth > kDestopBreakpoint) {
-                  Navigator.pop(context);
-                }
-              },
-              child: Center(
-                child: Hero(
-                  tag: 'imageHero',
-                  child: InteractiveViewer(
-                    child: Image.asset('assets/photos/$name'),
-                  ),
+          GestureDetector(
+            onTap: () {
+              // if (screenWidth > kDestopBreakpoint) {
+              //   Navigator.pop(context);
+              // }
+            },
+            child: Center(
+              child: Hero(
+                tag: 'imageHero',
+                child: InteractiveViewer(
+                  child: Image.asset('assets/photos/$name'),
                 ),
               ),
             ),
