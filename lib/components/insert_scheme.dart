@@ -10,7 +10,7 @@ class InsertScheme extends StatelessWidget {
   const InsertScheme(
       {required this.scheme,
       required this.elements,
-      this.buttonTitle = 'Открыть интерактивную схему'});
+      this.buttonTitle = 'Интерактивная схема'});
 
   @override
   Widget build(BuildContext context) {

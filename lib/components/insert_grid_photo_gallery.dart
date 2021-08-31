@@ -13,6 +13,7 @@ class InsertGridGallery extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Container(
         child: GridView.builder(
+          physics: NeverScrollableScrollPhysics(),
           itemCount: photos.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4, crossAxisSpacing: 16, mainAxisSpacing: 16),

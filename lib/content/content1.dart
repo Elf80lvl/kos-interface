@@ -47,7 +47,6 @@ class Content1 extends StatelessWidget {
 
               //TODO вставка видео
               //TODO вставка таблицы
-              //TODO вставка штуки с подсвеченными элементами
               //TODO улучшить sequence, кэшрование?
               //TODO open pdf from assets
 
@@ -133,10 +132,10 @@ class Content1 extends StatelessWidget {
               InsertScheme(
                 scheme: 'cat.jpg',
                 elements: {
-                  "catBackPaws.png": "Задние парные опорные механизмы",
-                  "catEars.png": "Направленные улавливатели шума",
+                  "catBackPaws.png": "Задние парные опорные устройства",
+                  "catEars.png": "Направляемые улавливатели шума",
                   "catEyes.png": "Приборы ночного видения",
-                  "catFrontPaws.png": "Передние парные опорные механизмы",
+                  "catFrontPaws.png": "Передние парные опорные устройства",
                   "catStomach.png": "Накопительный бак",
                   "catTail.png": "Стабилизатор равновесия",
                 },

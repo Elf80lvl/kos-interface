@@ -3,6 +3,8 @@ import 'package:kos_interface/breakpoints.dart';
 import 'package:kos_interface/const.dart';
 import 'package:kos_interface/main.dart';
 
+import 'kos_info.dart';
+
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

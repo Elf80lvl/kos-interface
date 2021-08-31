@@ -9,9 +9,7 @@ class Insert3D extends StatelessWidget {
   final double size;
   final String modelName;
   Insert3D(
-      {required this.modelName,
-      this.size = 8,
-      this.buttonTitle = 'Открыть 3D модель'});
+      {required this.modelName, this.size = 8, this.buttonTitle = '3D модель'});
 
   @override
   Widget build(BuildContext context) {

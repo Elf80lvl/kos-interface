@@ -1,42 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:kos_interface/breakpoints.dart';
 import 'package:kos_interface/const.dart';
-import 'package:kos_interface/content/content1.dart';
-import 'package:kos_interface/content/content2.dart';
 import 'package:kos_interface/responsive_layout.dart';
 import 'package:kos_interface/splashscreen.dart';
+import 'kos_info.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-final String kosName =
-    'Название компьютерной обучающей системы с очень очень очень длинным именем';
-final String kosType = 'Компьютерная обучающая система';
-final String kosYear = '2021';
-final String writers = 'А.А. Иванов, В.В. Петров';
-final String developers = 'П.П. Сидоров, Н.Н. Кузнецов';
-final String devFacility =
-    'Образовательное подразделение "Учебно-производственный центр"';
-
 //изменяемый индекс текущего элемента списка со страницами кос, 0 - первая страница
 int currentIndexContent = 0;
-
-//список страниц кос
-List<Widget> contentList = [
-  Content1(),
-  Content2(),
-];
-
-// var contentMap = {
-//   Content1(): 'Первый пункт в меню',
-//   Content2(): 'Второй пункт в меню',
-// };
-
-List<String> menuItems = [
-  'Первый пункт в меню',
-  'Второй пункт меню',
-];
 
 //текущая страница кос
 Widget currentPage = contentList[currentIndexContent];
@@ -66,7 +40,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //*функция для кнопки назад и далее в bottomNavigationBar
   void onTappedBar(int index) {
-    //если нажата кнопка назад
+    //если нажата первая кнопка в BNB (кнопка назад)
     if (index == 0) {
       currentIndexContent--;
       //не может быть меньше 0, т.к. 0 это первая страница
@@ -147,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   TextSpan(
                     text:
-                        '\n© $kosYearг. ОП «Учебно-производственный центр» ООО «Газпром трансгаз Ухта»',
+                        '\n© $kosYearг. $devFacility, ООО «Газпром трансгаз Ухта»',
                     style: TextStyle(
                       color: Colors.grey,
                       height: 1.5,
