@@ -34,14 +34,14 @@ class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
               flex: 10,
               child: Stack(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      // if (screenWidth > kDestopBreakpoint) {
-                      //   Navigator.pop(context);
-                      // }
-                    },
-                    child: Center(
-                      child: InteractiveViewer(
+                  InteractiveViewer(
+                    child: GestureDetector(
+                      onTap: () {
+                        // if (screenWidth > kDestopBreakpoint) {
+                        //   Navigator.pop(context);
+                        // }
+                      },
+                      child: Center(
                         child: Image.asset('assets/photos/${widget.photo}'),
                       ),
                     ),

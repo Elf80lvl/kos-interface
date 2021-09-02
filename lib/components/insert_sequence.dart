@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kos_interface/const.dart';
 
 class InsertSequence extends StatefulWidget {
   //final String url = 'assets/sequence/';
@@ -52,6 +53,7 @@ class _InsertSequenceState extends State<InsertSequence> {
           Container(
             width: double.infinity,
             child: Slider.adaptive(
+                activeColor: kMainBlueColor,
                 //divisions: max,
                 value: name.toDouble(),
                 min: 1,

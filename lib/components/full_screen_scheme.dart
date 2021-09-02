@@ -39,53 +39,55 @@ class _FullScreenSchemeState extends State<FullScreenScheme>
         //! mobile
         ? Scaffold(
             backgroundColor: kBGcolor,
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Center(
-                    child: Stack(
-                      children: [
-                        Image.asset('assets/photos/${widget.scheme}'),
-                        FadeTransition(
-                          opacity: _animationController,
-                          child: Image.asset(
-                              'assets/photos/${widget.elements.keys.toList()[currentIndex]}'),
-                        ),
-                        Positioned(top: 32, right: 32, child: ButtonClose()),
-                      ],
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Center(
+                      child: Stack(
+                        children: [
+                          Image.asset('assets/photos/${widget.scheme}'),
+                          FadeTransition(
+                            opacity: _animationController,
+                            child: Image.asset(
+                                'assets/photos/${widget.elements.keys.toList()[currentIndex]}'),
+                          ),
+                          Positioned(top: 32, right: 32, child: ButtonClose()),
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 8.0, right: 8.0, left: 8.0),
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: widget.elements.keys.toList().length,
-                          itemBuilder: (context, index) {
-                            return Card(
-                              color: currentIndex == index
-                                  ? kMainBlueColor
-                                  : Colors.white,
-                              child: ListTile(
-                                title: Text(
-                                  widget.elements.values.toList()[index],
-                                  style: TextStyle(
-                                      color: currentIndex == index
-                                          ? Colors.white
-                                          : kMainBlueColor),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 8.0, right: 8.0, left: 8.0),
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: widget.elements.keys.toList().length,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                color: currentIndex == index
+                                    ? kMainBlueColor
+                                    : Colors.white,
+                                child: ListTile(
+                                  title: Text(
+                                    widget.elements.values.toList()[index],
+                                    style: TextStyle(
+                                        color: currentIndex == index
+                                            ? Colors.white
+                                            : kMainBlueColor),
+                                  ),
+                                  onTap: () {
+                                    currentIndex = index;
+                                    setState(() {});
+                                  },
                                 ),
-                                onTap: () {
-                                  currentIndex = index;
-                                  setState(() {});
-                                },
-                              ),
-                            );
-                          }),
+                              );
+                            }),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           )

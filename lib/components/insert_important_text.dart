@@ -16,7 +16,7 @@ class InsertImportantText extends StatelessWidget {
           borderRadius: BorderRadius.all(
             kCornerRadius,
           ),
-          color: Colors.black12,
+          color: kTableColor,
         ),
         child: SelectableText(
           text,

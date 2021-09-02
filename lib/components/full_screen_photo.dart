@@ -25,10 +25,10 @@ class FullScreenPhoto extends StatelessWidget {
               //   Navigator.pop(context);
               // }
             },
-            child: Center(
-              child: Hero(
-                tag: 'imageHero',
-                child: InteractiveViewer(
+            child: InteractiveViewer(
+              child: Center(
+                child: Hero(
+                  tag: 'imageHero',
                   child: Image.asset('assets/photos/$name'),
                 ),
               ),

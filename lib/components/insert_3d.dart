@@ -8,8 +8,12 @@ class Insert3D extends StatelessWidget {
   final buttonTitle;
   final double size;
   final String modelName;
+  final bool isLight;
   Insert3D(
-      {required this.modelName, this.size = 8, this.buttonTitle = '3D модель'});
+      {required this.modelName,
+      this.size = 5,
+      this.buttonTitle = '3D модель',
+      this.isLight = false});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +33,7 @@ class Insert3D extends StatelessWidget {
             return FlutterCube(
               modelName: modelName,
               size: size,
+              isLight: isLight,
             );
           }),
         );

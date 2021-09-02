@@ -31,7 +31,7 @@ class _InsertPhotoGalleryState extends State<InsertPhotoGallery> {
               itemCount: widget.photos.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.only(right: 16),
+                  padding: const EdgeInsets.only(right: 8),
                   child: ClipRRect(
                     borderRadius: kBorderRadius,
                     child: MouseRegion(

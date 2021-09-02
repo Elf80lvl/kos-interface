@@ -52,8 +52,19 @@ flutter:
   assets:
     - assets/images/
     - assets/photos/
-    - assets/sequence/monkey/
     - assets/models/
+    - assets/sequence/1/
+    - assets/sequence/2/
+    - assets/sequence/3/
+    - assets/sequence/4/
+    - assets/sequence/5/
+    - assets/sequence/6/
+    - assets/sequence/7/
+    - assets/sequence/8/
+    - assets/sequence/9/
+    - assets/sequence/10/
+    
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

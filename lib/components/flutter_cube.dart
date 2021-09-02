@@ -5,8 +5,10 @@ import 'package:kos_interface/components/button_close.dart';
 
 class FlutterCube extends StatefulWidget {
   final double size;
+  final bool isLight;
   final modelName;
-  const FlutterCube({Key? key, required this.size, this.modelName})
+  const FlutterCube(
+      {Key? key, required this.size, this.modelName, required this.isLight})
       : super(key: key);
 
   @override
@@ -31,7 +33,7 @@ class _FlutterCubeState extends State<FlutterCube> {
                 scene.world.add(
                   Object(
                     fileName: 'assets/models/${widget.modelName}',
-                    lighting: true,
+                    lighting: widget.isLight,
                   ),
                 );
                 //уменьшить размер модели если на мобилке

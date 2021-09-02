@@ -16,7 +16,7 @@ class InsertGridGallery extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           itemCount: photos.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, crossAxisSpacing: 16, mainAxisSpacing: 16),
+              crossAxisCount: 4, crossAxisSpacing: 8, mainAxisSpacing: 8),
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return ClipRRect(
