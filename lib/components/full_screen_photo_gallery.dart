@@ -20,7 +20,6 @@ class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
   //final controller = ScrollController();
 
   void goNextPhoto() {
-    //*go next photo
     widget.indexOfNextPhoto = widget.photos.indexOf(widget.photo) + 1;
     if (widget.indexOfNextPhoto == widget.photos.length) {
       widget.photo = widget.photos[0];
@@ -31,7 +30,6 @@ class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
   }
 
   void goPrevPhoto() {
-    //*go prev photo
     widget.indexOfPrevPhoto = widget.photos.indexOf(widget.photo) - 1;
     if (widget.indexOfPrevPhoto < 0) {
       widget.photo = widget.photos.last;
@@ -57,15 +55,16 @@ class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
                 children: [
                   InteractiveViewer(
                     child: GestureDetector(
-                      onHorizontalDragEnd: (DragEndDetails details) {
-                        if (details.primaryVelocity! > 0) {
-                          //swipe Left
-                          goPrevPhoto();
-                        } else if (details.primaryVelocity! < 0) {
-                          //swipe Right
-                          goNextPhoto();
-                        }
-                      },
+                      //* swipes
+                      // onHorizontalDragEnd: (DragEndDetails details) {
+                      //   if (details.primaryVelocity! > 0) {
+                      //     //swipe Left
+                      //     goPrevPhoto();
+                      //   } else if (details.primaryVelocity! < 0) {
+                      //     //swipe Right
+                      //     goNextPhoto();
+                      //   }
+                      // },
                       child: Center(
                         child: Image.asset('assets/photos/${widget.photo}'),
                       ),

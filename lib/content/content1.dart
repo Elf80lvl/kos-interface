@@ -44,7 +44,6 @@ class Content1 extends StatelessWidget {
               //TODO вставка видео
               //TODO улучшить sequence, кэшрование?
               //TODO open pdf from assets
-              //TODO встроенная интерактивная схема, кнопки в горизонтальном списке
 
               //Название раздела
               InsertTitle('Примеры раздела, текста и прочего'),

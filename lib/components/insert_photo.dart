@@ -10,6 +10,7 @@ class InsertPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: GestureDetector(
