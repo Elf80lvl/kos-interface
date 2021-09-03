@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kos_interface/const.dart';
 
 class ButtonClose extends StatelessWidget {
   const ButtonClose({
@@ -15,13 +16,16 @@ class ButtonClose extends StatelessWidget {
         width: 32,
         height: 32,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: kButtonCloseColor,
           shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 2),
-          ],
+          // boxShadow: [
+          //   BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 2),
+          // ],
         ),
-        child: Icon(Icons.close),
+        child: Icon(
+          Icons.close,
+          color: Colors.white,
+        ),
       ),
     );
   }

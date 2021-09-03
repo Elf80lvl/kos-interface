@@ -14,6 +14,7 @@ import 'package:kos_interface/components/insert_text.dart';
 import 'package:kos_interface/components/insert_title.dart';
 import 'package:kos_interface/components/table_widgets.dart';
 import 'package:kos_interface/const.dart';
+import 'package:video_player/video_player.dart';
 
 class Content1 extends StatelessWidget {
   const Content1({
@@ -32,7 +33,7 @@ class Content1 extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //! НАЧАЛО
+              //! НАЧАЛО РЕДАКТИРУЕМОЙ СТРАНИЦЫ С КОНТЕНТОМ
               //* Перед началом работы необходимо наполнить папки для хранения изображений и прочего, например:
               //*   assets/photos - изображения, фотографии
               //*   assets/models - 3д модели
@@ -43,6 +44,7 @@ class Content1 extends StatelessWidget {
               //TODO вставка видео
               //TODO улучшить sequence, кэшрование?
               //TODO open pdf from assets
+              //TODO встроенная интерактивная схема, кнопки в горизонтальном списке
 
               //Название раздела
               InsertTitle('Примеры раздела, текста и прочего'),
@@ -210,7 +212,9 @@ class Content1 extends StatelessWidget {
               ),
               //*конец DataTable
 
-              //! КОНЕЦ
+              //video
+
+              //! КОНЕЦ РЕДАКТИРУЕМОЙ СТРАНИЦЫ С КОНТЕНТОМ
             ],
           ),
         ),
@@ -218,6 +222,9 @@ class Content1 extends StatelessWidget {
     );
   }
 }
+
+
+
 
 
 

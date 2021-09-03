@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kos_interface/breakpoints.dart';
 import 'package:kos_interface/components/button_close.dart';
 import 'package:kos_interface/components/button_next.dart';
 import 'package:kos_interface/components/button_prev.dart';
@@ -20,6 +19,28 @@ class FullScreenPhotoGallery extends StatefulWidget {
 class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
   //final controller = ScrollController();
 
+  void goNextPhoto() {
+    //*go next photo
+    widget.indexOfNextPhoto = widget.photos.indexOf(widget.photo) + 1;
+    if (widget.indexOfNextPhoto == widget.photos.length) {
+      widget.photo = widget.photos[0];
+    } else {
+      widget.photo = '${widget.photos[widget.indexOfNextPhoto]}';
+    }
+    setState(() {});
+  }
+
+  void goPrevPhoto() {
+    //*go prev photo
+    widget.indexOfPrevPhoto = widget.photos.indexOf(widget.photo) - 1;
+    if (widget.indexOfPrevPhoto < 0) {
+      widget.photo = widget.photos.last;
+    } else {
+      widget.photo = widget.photos[widget.indexOfPrevPhoto];
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -36,10 +57,14 @@ class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
                 children: [
                   InteractiveViewer(
                     child: GestureDetector(
-                      onTap: () {
-                        // if (screenWidth > kDestopBreakpoint) {
-                        //   Navigator.pop(context);
-                        // }
+                      onHorizontalDragEnd: (DragEndDetails details) {
+                        if (details.primaryVelocity! > 0) {
+                          //swipe Left
+                          goPrevPhoto();
+                        } else if (details.primaryVelocity! < 0) {
+                          //swipe Right
+                          goNextPhoto();
+                        }
                       },
                       child: Center(
                         child: Image.asset('assets/photos/${widget.photo}'),
@@ -49,41 +74,27 @@ class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
 
                   //* кнопка закрыть
                   Positioned(top: 32, right: 32, child: ButtonClose()),
+
                   //* button next
                   Positioned(
                       top: screenHeight / 2,
                       right: 32,
                       child: ButtonNext(() {
-                        //*go next photo
-                        widget.indexOfNextPhoto =
-                            widget.photos.indexOf(widget.photo) + 1;
-                        if (widget.indexOfNextPhoto == widget.photos.length) {
-                          widget.photo = widget.photos[0];
-                        } else {
-                          widget.photo =
-                              '${widget.photos[widget.indexOfNextPhoto]}';
-                        }
-                        setState(() {});
+                        goNextPhoto();
                       })),
+
                   //* button prev
                   Positioned(
                       top: screenHeight / 2,
                       left: 32,
                       child: ButtonPrev(() {
-                        //*go prev photo
-                        widget.indexOfPrevPhoto =
-                            widget.photos.indexOf(widget.photo) - 1;
-                        if (widget.indexOfPrevPhoto < 0) {
-                          widget.photo = widget.photos.last;
-                        } else {
-                          widget.photo = widget.photos[widget.indexOfPrevPhoto];
-                        }
-                        setState(() {});
+                        goPrevPhoto();
                       })),
                 ],
               ),
             ),
             SizedBox(height: 16),
+
             //* минигаллерея
             Flexible(
               child: Container(
@@ -105,6 +116,7 @@ class _FullScreenPhotoGalleryState extends State<FullScreenPhotoGallery> {
                               decoration: BoxDecoration(
                                 //выделяем border у текущей картинки
                                 border: Border.all(
+                                    width: 2.0,
                                     color:
                                         widget.photos.indexOf(widget.photo) ==
                                                 index
