@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kos_interface/breakpoints.dart';
+import 'package:kos_interface/interface/breakpoints.dart';
 import 'package:kos_interface/components/button_close.dart';
-import 'package:kos_interface/const.dart';
+import 'package:kos_interface/interface/const.dart';
 
 class FullScreenPhoto extends StatelessWidget {
   const FullScreenPhoto(this.name);

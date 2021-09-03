@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../const.dart';
+import '../interface/const.dart';
 import 'full_screen_photo_gallery.dart';
 
 class InsertGridGallery extends StatelessWidget {

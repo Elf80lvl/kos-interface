@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kos_interface/breakpoints.dart';
+import 'package:kos_interface/interface/breakpoints.dart';
 
 class InsertTitle extends StatelessWidget {
   final String titleText;

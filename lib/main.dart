@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kos_interface/breakpoints.dart';
-import 'package:kos_interface/const.dart';
-import 'package:kos_interface/responsive_layout.dart';
-import 'package:kos_interface/splashscreen.dart';
+import 'package:kos_interface/interface/breakpoints.dart';
+import 'package:kos_interface/interface/const.dart';
+import 'package:kos_interface/interface/responsive_layout.dart';
+import 'package:kos_interface/interface/splashscreen.dart';
+import 'interface/dialog_kos_name.dart';
 import 'kos_info.dart';
 
 void main() {
@@ -102,10 +103,19 @@ class _MyHomePageState extends State<MyHomePage> {
         toolbarHeight: screenWidth <= kDestopBreakpoint ? kToolbarHeight : 100,
         centerTitle: true,
         title: screenWidth <= kDestopBreakpoint
-            ? Text(
-                '$kosName',
-                maxLines: 2,
-                style: TextStyle(color: kMainBlueColor),
+            ? GestureDetector(
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return DialogKosName();
+                      });
+                },
+                child: Text(
+                  '$kosName',
+                  maxLines: 2,
+                  style: TextStyle(color: kMainBlueColor),
+                ),
               )
             : RichText(
                 textAlign: TextAlign.center,

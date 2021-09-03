@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kos_interface/const.dart';
+import 'package:kos_interface/interface/const.dart';
 
 class InsertSequence extends StatefulWidget {
   //final String url = 'assets/sequence/';

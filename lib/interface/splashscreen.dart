@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kos_interface/breakpoints.dart';
-import 'package:kos_interface/const.dart';
+import 'package:kos_interface/interface/breakpoints.dart';
+import 'package:kos_interface/interface/const.dart';
 import 'package:kos_interface/main.dart';
 
-import 'kos_info.dart';
+import '../kos_info.dart';
 
 class SplashScreen extends StatelessWidget {
   @override

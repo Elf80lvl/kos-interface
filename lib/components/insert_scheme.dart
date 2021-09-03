@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kos_interface/components/button_fullscreen.dart';
-import '../const.dart';
+import '../interface/const.dart';
 import 'full_screen_scheme.dart';
 
 class InsertScheme extends StatefulWidget {

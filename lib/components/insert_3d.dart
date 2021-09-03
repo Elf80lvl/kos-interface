@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:kos_interface/components/flutter_cube.dart';
 
-import '../const.dart';
+import '../interface/const.dart';
 
 class Insert3D extends StatelessWidget {
   final buttonTitle;

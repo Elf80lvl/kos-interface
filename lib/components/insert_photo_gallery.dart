@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kos_interface/components/button_next.dart';
 import 'package:kos_interface/components/button_prev.dart';
 import 'package:kos_interface/components/full_screen_photo_gallery.dart';
-import 'package:kos_interface/const.dart';
+import 'package:kos_interface/interface/const.dart';
 
 class InsertPhotoGallery extends StatefulWidget {
   final List<String> photos;

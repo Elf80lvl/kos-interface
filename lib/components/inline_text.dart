@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../const.dart';
+import '../interface/const.dart';
 import 'launch_url.dart';
 
 TextSpan link(String text, String link) {

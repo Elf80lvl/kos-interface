@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/flutter_cube.dart';
-import 'package:kos_interface/breakpoints.dart';
+import 'package:kos_interface/interface/breakpoints.dart';
 import 'package:kos_interface/components/button_close.dart';
 
 class FlutterCube extends StatefulWidget {

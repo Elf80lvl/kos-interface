@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kos_interface/breakpoints.dart';
+import 'package:kos_interface/interface/breakpoints.dart';
 import 'package:kos_interface/components/inline_text.dart';
 import 'package:kos_interface/components/insert_3d.dart';
 import 'package:kos_interface/components/insert_grid_photo_gallery.dart';
@@ -13,7 +13,7 @@ import 'package:kos_interface/components/insert_sequence.dart';
 import 'package:kos_interface/components/insert_text.dart';
 import 'package:kos_interface/components/insert_title.dart';
 import 'package:kos_interface/components/table_widgets.dart';
-import 'package:kos_interface/const.dart';
+import 'package:kos_interface/interface/const.dart';
 import 'package:video_player/video_player.dart';
 
 class Content1 extends StatelessWidget {

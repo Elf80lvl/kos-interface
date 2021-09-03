@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../const.dart';
+import '../interface/const.dart';
 
 class TableText extends StatelessWidget {
   final String text;
