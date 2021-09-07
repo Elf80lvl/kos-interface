@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kos_interface/components/video_player.dart';
 import 'package:kos_interface/interface/breakpoints.dart';
 import 'package:kos_interface/components/inline_text.dart';
 import 'package:kos_interface/components/insert_3d.dart';
@@ -14,7 +15,6 @@ import 'package:kos_interface/components/insert_text.dart';
 import 'package:kos_interface/components/insert_title.dart';
 import 'package:kos_interface/components/table_widgets.dart';
 import 'package:kos_interface/interface/const.dart';
-import 'package:video_player/video_player.dart';
 
 class Content1 extends StatelessWidget {
   const Content1({
@@ -211,7 +211,8 @@ class Content1 extends StatelessWidget {
               ),
               //*конец DataTable
 
-              //video
+              //video. Видеофайлы должны находиться в 'assets/video'
+              AssetVideoPlayer(videoName: 'zatvor.mp4'),
 
               //! КОНЕЦ РЕДАКТИРУЕМОЙ СТРАНИЦЫ С КОНТЕНТОМ
             ],

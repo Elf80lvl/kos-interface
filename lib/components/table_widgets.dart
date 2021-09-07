@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../interface/const.dart';
 
+//* обычная таблица, текст ячеек
 class TableText extends StatelessWidget {
   final String text;
   const TableText(this.text);
@@ -15,6 +16,7 @@ class TableText extends StatelessWidget {
   }
 }
 
+//* обычная таблица, текст колонок
 class TableTitle extends StatelessWidget {
   final String text;
   const TableTitle(this.text);
@@ -32,6 +34,7 @@ class TableTitle extends StatelessWidget {
   }
 }
 
+//* прокручиваемая таблица
 DataCell dataCell(String text) => DataCell(Text(text));
 
 DataColumn dataColumn(String text) {
