@@ -30,19 +30,19 @@ class _InsertSequenceState extends State<InsertSequence> {
         children: [
           GestureDetector(
             onHorizontalDragUpdate: (details) {
-              //если крутим вправо
-              if (details.primaryDelta! > 0) {
-                name >= widget.max
-                    ? name = widget.max
-                    : name = name + details.primaryDelta!.toInt();
-                //если крутим влево
-              } else if (details.primaryDelta! < 0) {
-                name <= 1
-                    ? name = 1
-                    : name = name + details.primaryDelta!.toInt();
-              }
+              // //если крутим вправо
+              // if (details.primaryDelta! > 0) {
+              //   name >= widget.max
+              //       ? name = widget.max
+              //       : name = name + details.primaryDelta!.toInt();
+              //   //если крутим влево
+              // } else if (details.primaryDelta! < 0) {
+              //   name <= 1
+              //       ? name = 1
+              //       : name = name + details.primaryDelta!.toInt();
+              // }
 
-              setState(() {});
+              // setState(() {});
             },
             child: AspectRatio(
               aspectRatio: 16 / 9,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kos_interface/interface/breakpoints.dart';
-import 'package:kos_interface/interface/const.dart';
 import 'package:kos_interface/main.dart';
 
 import '../kos_info.dart';

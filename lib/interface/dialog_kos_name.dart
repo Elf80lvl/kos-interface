@@ -17,7 +17,7 @@ class DialogKosName extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              color: Theme.of(context).scaffoldBackgroundColor,
+              //color: Theme.of(context).scaffoldBackgroundColor,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kos_interface/components/video_player.dart';
+import 'package:kos_interface/components/video_player/insert_video.dart';
 import 'package:kos_interface/interface/breakpoints.dart';
 import 'package:kos_interface/components/inline_text.dart';
 import 'package:kos_interface/components/insert_3d.dart';
@@ -41,7 +41,6 @@ class Content1 extends StatelessWidget {
               //*   assets/sequence/2 - другая папка с другой секвенцией, всего десять папок (переименовывать папки нельзя).
               //*   Если у вас больше 10ти секвенций, создайте дополнительные папки и добавьте пути в pubspec.yaml
 
-              //TODO вставка видео
               //TODO улучшить sequence, кэшрование?
               //TODO open pdf from assets
 
@@ -161,58 +160,63 @@ class Content1 extends StatelessWidget {
 
               //Таблица, которая будет прокручиваться горизонтально при нехватке места на экране
               //*начало DataTable
-              Center(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    headingRowColor:
-                        MaterialStateColor.resolveWith((states) => kTableColor),
-                    columns: [
-                      //названия колонок
-                      dataColumn('Номер'),
-                      dataColumn('Название'),
-                      dataColumn('Цвет'),
-                      dataColumn('Цена'),
-                      dataColumn('Цена'),
-                      dataColumn('Цена'),
-                      dataColumn('Цена'),
-                      dataColumn('Цена'),
-                    ],
-                    rows: [
-                      //строка
-                      DataRow(
-                        cells: [
-                          //ячейка
-                          dataCell('1'),
-                          dataCell('Клапан универсальный'),
-                          dataCell('Синий'),
-                          dataCell('56.000'),
-                          dataCell('56.000'),
-                          dataCell('56.000'),
-                          dataCell('56.000'),
-                          dataCell('56.000'),
-                        ],
-                      ),
-                      DataRow(
-                        cells: [
-                          dataCell('2'),
-                          dataCell('Уравнитель центробежный МК II'),
-                          dataCell('Черный'),
-                          dataCell('33.440'),
-                          dataCell('33.440'),
-                          dataCell('33.440'),
-                          dataCell('33.440'),
-                          dataCell('33.440'),
-                        ],
-                      ),
-                    ],
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Center(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: DataTable(
+                      headingRowColor: MaterialStateColor.resolveWith(
+                          (states) => kTableColor),
+                      columns: [
+                        //названия колонок
+                        dataColumn('Номер'),
+                        dataColumn('Название'),
+                        dataColumn('Цвет'),
+                        dataColumn('Цена'),
+                        dataColumn('Цена'),
+                        dataColumn('Цена'),
+                        dataColumn('Цена'),
+                        dataColumn('Цена'),
+                      ],
+                      rows: [
+                        //строка
+                        DataRow(
+                          cells: [
+                            //ячейка
+                            dataCell('1'),
+                            dataCell('Клапан универсальный'),
+                            dataCell('Синий'),
+                            dataCell('56.000'),
+                            dataCell('56.000'),
+                            dataCell('56.000'),
+                            dataCell('56.000'),
+                            dataCell('56.000'),
+                          ],
+                        ),
+                        DataRow(
+                          cells: [
+                            dataCell('2'),
+                            dataCell('Уравнитель центробежный МК II'),
+                            dataCell('Черный'),
+                            dataCell('33.440'),
+                            dataCell('33.440'),
+                            dataCell('33.440'),
+                            dataCell('33.440'),
+                            dataCell('33.440'),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               //*конец DataTable
 
-              //video. Видеофайлы должны находиться в 'assets/video'
-              AssetVideoPlayer(videoName: 'zatvor.mp4'),
+              InsertText('Видео:'),
+
+              //video. Видеофайлы должны находиться в 'assets/video', не используйте свойство isFullScreen
+              InsertVideo(videoName: 'zatvor.mp4'),
 
               //! КОНЕЦ РЕДАКТИРУЕМОЙ СТРАНИЦЫ С КОНТЕНТОМ
             ],

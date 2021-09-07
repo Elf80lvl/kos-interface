@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kos_interface/components/video_player.dart';
+import 'package:kos_interface/components/video_player/insert_video.dart';
 import 'package:kos_interface/interface/breakpoints.dart';
 import 'package:kos_interface/interface/const.dart';
 
-import 'button_close.dart';
+import '../button_close.dart';
 
 class FullScreenVideo extends StatefulWidget {
   final isFullScreen;
@@ -26,7 +26,7 @@ class _FullScreenVideoState extends State<FullScreenVideo> {
         child: Center(
           child: Stack(
             children: [
-              AssetVideoPlayer(
+              InsertVideo(
                 isFullScreen: widget.isFullScreen,
                 videoName: widget.videoName,
               ),

@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:kos_interface/interface/breakpoints.dart';
 import 'package:video_player/video_player.dart';
 
+import 'background_for_controls.dart';
 import 'full_screen_video.dart';
 
-class AssetVideoPlayer extends StatefulWidget {
+class InsertVideo extends StatefulWidget {
   final isFullScreen;
   final String videoName;
-  AssetVideoPlayer({this.isFullScreen = false, required this.videoName});
+  InsertVideo({this.isFullScreen = false, required this.videoName});
 
   @override
-  _AssetVideoPlayerState createState() => _AssetVideoPlayerState();
+  _InsertVideoState createState() => _InsertVideoState();
 }
 
-class _AssetVideoPlayerState extends State<AssetVideoPlayer> {
+class _InsertVideoState extends State<InsertVideo> {
   late VideoPlayerController controller;
   late String url;
   bool isControlsVisible = false;
@@ -65,51 +66,37 @@ class _AssetVideoPlayerState extends State<AssetVideoPlayer> {
               VideoPlayerWidget(controller: controller),
 
               //*BG
-              isControlsVisible
-                  ? Positioned.fill(
-                      child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.5),
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.center,
-                          colors: [
-                            Colors.black,
-                            Colors.transparent,
-                            //Colors.transparent,
-                          ],
-                        ),
-                      ),
-                    ))
-                  : Container(),
+              isControlsVisible ? BackGroundForControls() : Container(),
 
               //tap detector for mobile to show controls
               Positioned.fill(
-                  child: GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        if (screenWidth <= kDestopBreakpoint) {
-                          isControlsVisible
-                              ? isControlsVisible = false
-                              : isControlsVisible = true;
-                        }
-                        setState(() {});
-                      },
-                      child: Container(
-                        color: Colors.transparent,
-                      ))),
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    if (screenWidth <= kDestopBreakpoint) {
+                      isControlsVisible
+                          ? isControlsVisible = false
+                          : isControlsVisible = true;
+                    }
+                    setState(() {});
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                  ),
+                ),
+              ),
 
               //*controls
               if (controller != null && controller.value.isInitialized)
                 isControlsVisible
                     ?
-                    //*player buttons
+                    //*play, volume, position
                     Positioned(
                         bottom: 16.0,
                         left: 8.0,
                         child: Row(
                           children: [
-                            // play/pause
+                            //* play/pause
                             IconButton(
                               color: Colors.white,
                               onPressed: () {
@@ -122,7 +109,7 @@ class _AssetVideoPlayerState extends State<AssetVideoPlayer> {
                                   : Icon(Icons.play_arrow),
                             ),
 
-                            // Mute
+                            //* Mute
                             IconButton(
                               // padding: const EdgeInsets.only(left: 16.0, right: 0.0),
                               // constraints: BoxConstraints(),
@@ -135,33 +122,34 @@ class _AssetVideoPlayerState extends State<AssetVideoPlayer> {
                                   : Icon(Icons.volume_up),
                             ),
 
-                            // volume slider
-                            Container(
-                              width: 80,
-                              child: SliderTheme(
-                                data: SliderThemeData().copyWith(
-                                  trackHeight: 1,
-                                  overlayShape: RoundSliderOverlayShape(
-                                      overlayRadius: 12),
-                                  thumbShape: RoundSliderThumbShape(
-                                    enabledThumbRadius: 6,
+                            //* volume slider
+                            if (screenWidth >= kDestopBreakpoint)
+                              Container(
+                                width: 80,
+                                child: SliderTheme(
+                                  data: SliderThemeData().copyWith(
+                                    trackHeight: 1,
+                                    overlayShape: RoundSliderOverlayShape(
+                                        overlayRadius: 12),
+                                    thumbShape: RoundSliderThumbShape(
+                                      enabledThumbRadius: 6,
+                                    ),
                                   ),
+                                  child: Slider(
+                                      activeColor: Colors.white,
+                                      inactiveColor: Colors.grey,
+                                      value: controller.value.volume,
+                                      min: 0.0,
+                                      max: 1.0,
+                                      onChanged: (value) {
+                                        controller.setVolume(value);
+                                      }),
                                 ),
-                                child: Slider(
-                                    activeColor: Colors.white,
-                                    inactiveColor: Colors.grey,
-                                    value: controller.value.volume,
-                                    min: 0.0,
-                                    max: 1.0,
-                                    onChanged: (value) {
-                                      controller.setVolume(value);
-                                    }),
                               ),
-                            ),
 
                             SizedBox(width: 16.0),
 
-                            // current time and overall
+                            //* current time and overall
                             RichText(
                               text: TextSpan(
                                 children: [
@@ -183,7 +171,7 @@ class _AssetVideoPlayerState extends State<AssetVideoPlayer> {
                       )
                     : Container(),
 
-              //fullscreen button
+              //* fullscreen button
               isControlsVisible
                   ? Positioned(
                       bottom: 16,
@@ -191,6 +179,7 @@ class _AssetVideoPlayerState extends State<AssetVideoPlayer> {
                       child: IconButton(
                         color: Colors.white,
                         onPressed: () {
+                          controller.pause();
                           if (widget.isFullScreen) {
                             Navigator.of(context).pop();
                           } else
