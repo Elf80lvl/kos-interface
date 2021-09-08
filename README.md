@@ -1,16 +1,9 @@
 # kos_interface
 
-A new Flutter project.
+Адаптивный интерфейс
 
-## Getting Started
+Демо:
 
-This project is a starting point for a Flutter application.
+https://user-images.githubusercontent.com/49438937/132342897-bc693fa8-dc9f-4444-9af9-c72bfd94c58d.mp4
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
