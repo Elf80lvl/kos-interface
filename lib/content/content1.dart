@@ -43,6 +43,7 @@ class Content1 extends StatelessWidget {
 
               //TODO улучшить sequence, кэшрование?
               //TODO open pdf from assets
+              //TODO audio files
 
               //Название раздела
               InsertTitle('Примеры раздела, текста и прочего'),
@@ -215,7 +216,8 @@ class Content1 extends StatelessWidget {
 
               InsertText('Видео:'),
 
-              //video. Видеофайлы должны находиться в 'assets/video', не используйте свойство isFullScreen
+              //Видео. Видеофайлы должны находиться в 'assets/video'
+              //не используйте свойство isFullScreen, оно используется при переходе в новое окно и изменении вида и поведении кнопки fullscreen
               InsertVideo(videoName: 'zatvor.mp4'),
 
               //! КОНЕЦ РЕДАКТИРУЕМОЙ СТРАНИЦЫ С КОНТЕНТОМ

@@ -13,8 +13,15 @@ class BackGroundForControls extends StatelessWidget {
       right: 0,
       left: 0,
       child: Container(
-        height: 60,
-        color: Colors.black.withOpacity(0.5),
+        height: 100,
+        //color: Colors.black.withOpacity(0.5),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: [Colors.black.withOpacity(0.7), Colors.transparent],
+          ),
+        ),
       ),
     );
   }

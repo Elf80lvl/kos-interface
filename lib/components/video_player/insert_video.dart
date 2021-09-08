@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kos_interface/interface/breakpoints.dart';
+import 'package:kos_interface/interface/const.dart';
 import 'package:video_player/video_player.dart';
 
 import 'background_for_controls.dart';
@@ -69,18 +70,41 @@ class _InsertVideoState extends State<InsertVideo> {
               isControlsVisible ? BackGroundForControls() : Container(),
 
               //tap detector for mobile to show controls
-              Positioned.fill(
+              Positioned(
+                top: 0,
+                right: 0,
+                left: 0,
+                bottom: 0,
                 child: GestureDetector(
-                  behavior: HitTestBehavior.translucent,
+                  //behavior: HitTestBehavior.translucent,
                   onTap: () {
                     if (screenWidth <= kDestopBreakpoint) {
-                      isControlsVisible
-                          ? isControlsVisible = false
-                          : isControlsVisible = true;
+                      isControlsVisible = !isControlsVisible;
                     }
                     setState(() {});
                   },
                   child: Container(
+                    color: Colors.transparent,
+                  ),
+                ),
+              ),
+
+              //для моб устр. Если кнопки управления видны то они не будут скрываться если промахнешься мимо индикатора прогресса видео при перемотке
+              Positioned(
+                bottom: 0,
+                right: 0,
+                left: 0,
+                child: GestureDetector(
+                  //behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    if (screenWidth <= kDestopBreakpoint &&
+                        !isControlsVisible) {
+                      isControlsVisible = !isControlsVisible;
+                    }
+                    setState(() {});
+                  },
+                  child: Container(
+                    height: 100,
                     color: Colors.transparent,
                   ),
                 ),
@@ -92,7 +116,7 @@ class _InsertVideoState extends State<InsertVideo> {
                     ?
                     //*play, volume, position
                     Positioned(
-                        bottom: 16.0,
+                        bottom: 32.0,
                         left: 8.0,
                         child: Row(
                           children: [
@@ -174,7 +198,7 @@ class _InsertVideoState extends State<InsertVideo> {
               //* fullscreen button
               isControlsVisible
                   ? Positioned(
-                      bottom: 16,
+                      bottom: 32,
                       right: 8,
                       child: IconButton(
                         color: Colors.white,
@@ -207,12 +231,19 @@ class _InsertVideoState extends State<InsertVideo> {
                       child: Stack(
                         children: [
                           Positioned(
-                            bottom: 60,
-                            right: 0,
-                            left: 0,
-                            child: VideoProgressIndicator(
-                              controller,
-                              allowScrubbing: true,
+                            bottom: 20,
+                            right: 16,
+                            left: 16,
+                            child: Container(
+                              height: 10,
+                              child: VideoProgressIndicator(
+                                controller,
+                                allowScrubbing: true,
+                                colors: VideoProgressColors(
+                                    bufferedColor: Colors.grey.shade600,
+                                    playedColor: Colors.white,
+                                    backgroundColor: Colors.grey.shade800),
+                              ),
                             ),
                           ),
                         ],
