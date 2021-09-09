@@ -4,6 +4,7 @@ import 'package:kos_interface/interface/const.dart';
 import 'package:video_player/video_player.dart';
 
 import 'background_for_controls.dart';
+import 'big_play_button_center.dart';
 import 'full_screen_video.dart';
 
 class InsertVideo extends StatefulWidget {
@@ -194,6 +195,10 @@ class _InsertVideoState extends State<InsertVideo> {
                         ),
                       )
                     : Container(),
+
+              //* big play button. Invisible if video playing
+              if (!controller.value.isPlaying)
+                BigPlayButtonCenter(controller: controller),
 
               //* fullscreen button
               isControlsVisible

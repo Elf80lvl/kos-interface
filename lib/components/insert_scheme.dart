@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kos_interface/components/button_fullscreen.dart';
+import 'package:kos_interface/interface/breakpoints.dart';
 import '../interface/const.dart';
 import 'full_screen_scheme.dart';
 
@@ -37,6 +38,7 @@ class _InsertSchemeState extends State<InsertScheme>
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Column(
@@ -52,22 +54,25 @@ class _InsertSchemeState extends State<InsertScheme>
                   child: Image.asset(
                       'assets/photos/${widget.elements.keys.toList()[currentIndex]}'),
                 ),
-                Positioned(
-                    bottom: 8,
-                    right: 8,
-                    child: ButtonFullScreen(() {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return FullScreenScheme(
-                              widget.scheme,
-                              widget.elements,
-                            );
-                          },
-                        ),
-                      );
-                    })),
+
+                //*fullscreen button
+                if (screenWidth >= kDestopBreakpoint)
+                  Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: ButtonFullScreen(() {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return FullScreenScheme(
+                                widget.scheme,
+                                widget.elements,
+                              );
+                            },
+                          ),
+                        );
+                      })),
               ],
             ),
           ),
